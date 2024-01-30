@@ -1,6 +1,8 @@
 # valuation_pre_shot
 
-Valuation of an element of your pre shot routine for each stroke
+Valuation of an element of your pre shot routine for each golf shot
+
+It is an app for golfers.
 
 Runs only on mobile devices.
 The app should be used on the golf course after each shot.
