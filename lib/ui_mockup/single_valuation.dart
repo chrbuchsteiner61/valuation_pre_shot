@@ -14,26 +14,25 @@ class SingleValuation extends StatelessWidget {
     return Center(
       child: Container(
         color: Colors.green,
-        width: 138,
+        width: 140,
         height: 40,
         margin: const EdgeInsets.all(4),
         child: Padding(
           padding: const EdgeInsets.all(4),
           child: Row(
             children: <Widget>[
-              SizedBox(
-                // width: 60,
-                child: StyledText(
-                  aText: 'Schlag ',
-                  aWidth: 60,
-                ),
+              StyledText(
+                aText: 'Schlag ',
+                aWidth: 60,
+                aLignment: 'left',
               ),
-              SizedBox(
-               // width: 28,
-                child: StyledText(
-                  aText: teeNumber,
-                  aWidth: 28,
-                ),
+              StyledText(
+                aText: teeNumber,
+                aWidth: 28,
+                aLignment: 'right',
+              ),
+              const SizedBox(
+                width: 5,
               ),
               const SizedBox(
                 width: 38,

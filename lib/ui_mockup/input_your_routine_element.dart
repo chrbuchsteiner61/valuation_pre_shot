@@ -15,6 +15,7 @@ class InputYourRoutineElement extends StatelessWidget {
             child: StyledText(
               aText: 'Ich bewerte mein/e ',
               aWidth: 150,
+              aLignment: 'left',
             ),
           ),
           const Expanded(
