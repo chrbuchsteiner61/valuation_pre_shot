@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:valuation_pre_shot/single_valuation.dart';
+import 'package:valuation_pre_shot/ui_mockup/single_valuation.dart';
 
 class InputValuation extends StatelessWidget {
   @override

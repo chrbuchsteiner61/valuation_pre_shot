@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valuation_pre_shot/ui_demo.dart';
+import 'package:valuation_pre_shot/ui_mockup/ui_mockup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: UiDemo()// This trailing comma makes auto-formatting nicer for build methods.
+      body: UiMockup()// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

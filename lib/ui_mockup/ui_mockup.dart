@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:valuation_pre_shot/input_your_routine_element.dart';
-import 'package:valuation_pre_shot/change_the_tee.dart';
-import 'package:valuation_pre_shot/input_valuation.dart';
-import 'package:valuation_pre_shot/save_your_round.dart';
+import 'package:valuation_pre_shot/ui_mockup/input_your_routine_element.dart';
+import 'package:valuation_pre_shot/ui_mockup/change_the_tee.dart';
+import 'package:valuation_pre_shot/ui_mockup/input_valuation.dart';
+import 'package:valuation_pre_shot/ui_mockup/save_your_round.dart';
 
-class UiDemo extends StatelessWidget {
-  const UiDemo({super.key});
+class UiMockup extends StatelessWidget {
+  const UiMockup({super.key});
 
   // UiDemo();
 
