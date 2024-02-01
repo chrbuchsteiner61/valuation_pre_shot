@@ -13,7 +13,7 @@ class SingleValuation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        color: Colors.green,
+        color: Theme.of(context).colorScheme.primary,
         width: 140,
         height: 40,
         margin: const EdgeInsets.all(4),

@@ -6,11 +6,12 @@ class StyledText extends StatelessWidget {
   String aLignment;
   TextAlign theAlignment = TextAlign.left;
 
-  StyledText({super.key, required this.aText, required this.aWidth,
-  required this.aLignment})
-  {
-    switch (aLignment)
-    {
+  StyledText(
+      {super.key,
+      required this.aText,
+      required this.aWidth,
+      required this.aLignment}) {
+    switch (aLignment) {
       case 'left':
         this.theAlignment = TextAlign.left;
       case 'center':
@@ -20,22 +21,16 @@ class StyledText extends StatelessWidget {
     }
   }
 
-  TextStyle normalTextStyle =
-      const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white);
-
-  // Ausrichtung TextAlign
-
-
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
-        width: aWidth,
-        child: Text(
-      aText,
-      style: normalTextStyle,
-          textAlign: theAlignment,
-    ),
-      );
+    return Container(
+      width: aWidth,
+      child: Text(
+        aText,
+        //style: normalTextStyle,
+        style: Theme.of(context).textTheme.bodyMedium,
+        textAlign: theAlignment,
+      ),
+    );
   }
 }

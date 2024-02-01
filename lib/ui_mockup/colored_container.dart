@@ -5,14 +5,15 @@ class ColoredContainer extends StatelessWidget {
 
   ColoredContainer({super.key, required this.aWidget});
 
-  Color backgroundColor = Colors.green;
+  //Color backgroundColor = Colors.green;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       child: Container(
-        color: backgroundColor,
+        //color: backgroundColor,
+        color: Theme.of(context).colorScheme.primary,
         child: aWidget,
       ),
     );

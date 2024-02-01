@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valuation_pre_shot/ui_mockup/styled_text.dart';
 
 class SaveYourRound extends StatelessWidget {
   const SaveYourRound({super.key});
@@ -9,10 +10,30 @@ class SaveYourRound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: _incrementCounter,
-      tooltip: 'Increment',
-      child: const Icon(Icons.save),
+    return Row(
+      children: <Widget>[
+        Container(
+          color: Colors.white,
+          width: 30,
+        ),
+        Container(
+          color: Theme.of(context).colorScheme.primary,
+          child: StyledText(
+            aText: 'Runde abschliessen ',
+            aWidth: 200,
+            aLignment: 'left',
+          ),
+        ),
+        Container(
+          color: Colors.white,
+          width: 30,
+        ),
+        FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: const Icon(Icons.save),
+        ),
+      ],
     );
   }
 }
