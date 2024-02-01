@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:valuation_pre_shot/ui_mockup/styled_text.dart';
-import 'package:valuation_pre_shot/ui_mockup/colored_container.dart';
+import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
+import 'package:valuation_pre_shot/ui_elements/colored_container.dart';
 
 class InputYourRoutineElement extends StatelessWidget {
   const InputYourRoutineElement({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:valuation_pre_shot/ui_mockup/colored_container.dart';
-import 'package:valuation_pre_shot/ui_mockup/styled_text.dart';
+import 'package:valuation_pre_shot/ui_elements/colored_container.dart';
+import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 
 class ChangeTheTee extends StatelessWidget {
   const ChangeTheTee({super.key});
@@ -16,8 +16,8 @@ class ChangeTheTee extends StatelessWidget {
       //color: Colors.green,
       aWidget: Row(children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          child: StyledText(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: StyledText(
             aText: 'Bahn ',
             aWidth: 116,
             aLignment: 'left',
@@ -31,9 +31,10 @@ class ChangeTheTee extends StatelessWidget {
                     color: Colors.white,
                   ),
                   color: Colors.white,
-                  borderRadius: const BorderRadius.all(Radius.circular(10))),
-              //
+                  borderRadius: const BorderRadius.all(Radius.circular(15))),
+              margin: EdgeInsets.all(4),
               child: IconButton(
+                iconSize: 24,
                 icon: const Icon(Icons.arrow_back),
                 color: Colors.black,
                 tooltip: 'nothing',
@@ -51,8 +52,8 @@ class ChangeTheTee extends StatelessWidget {
                     color: Colors.white,
                   ),
                   color: Colors.white,
-                  borderRadius: const BorderRadius.all(Radius.circular(10))),
-              //
+                  borderRadius: const BorderRadius.all(Radius.circular(15))),
+              margin: EdgeInsets.all(4),
               child: IconButton(
                 icon: const Icon(Icons.arrow_forward),
                 color: Colors.black,

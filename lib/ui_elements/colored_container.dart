@@ -14,6 +14,7 @@ class ColoredContainer extends StatelessWidget {
       child: Container(
         //color: backgroundColor,
         color: Theme.of(context).colorScheme.primary,
+        height: 50,
         child: aWidget,
       ),
     );

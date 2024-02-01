@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valuation_pre_shot/ui_mockup/styled_text.dart';
+import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 
 class SaveYourRound extends StatelessWidget {
   const SaveYourRound({super.key});
@@ -15,9 +15,11 @@ class SaveYourRound extends StatelessWidget {
         Container(
           color: Colors.white,
           width: 30,
+
         ),
         Container(
           color: Theme.of(context).colorScheme.primary,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: StyledText(
             aText: 'Runde abschliessen ',
             aWidth: 200,
