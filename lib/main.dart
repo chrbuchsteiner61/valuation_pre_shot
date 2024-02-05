@@ -1,8 +1,45 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:valuation_pre_shot/ui_mockup/ui_mockup.dart';
+import 'package:provider/provider.dart';
+import 'package:valuation_pre_shot/ui_areas/change_the_tee.dart';
+import 'package:valuation_pre_shot/ui_areas/input_valuation.dart';
+import 'package:valuation_pre_shot/ui_areas//input_your_routine_element.dart';
+import 'package:valuation_pre_shot/ui_areas//save_your_round.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ChangeNumber()),
+      ],
+      child: const MyApp(),
+    ),
+  );
+}
+
+class ChangeNumber with ChangeNotifier, DiagnosticableTreeMixin {
+  int _aNumber = 1;
+
+  int get aTee => _aNumber;
+
+  void inDecreaseANumber(int anAddedValue, int minValue, int maxValue) {
+    _aNumber += anAddedValue;
+    if (_aNumber > maxValue) {
+      _aNumber = maxValue;
+    }
+    if (_aNumber < minValue) {
+      _aNumber = minValue;
+    }
+
+    notifyListeners();
+  }
+
+  /// Makes `Counter` readable inside the devtools by listing all of its properties
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IntProperty('count', aTee));
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -20,8 +57,8 @@ class MyApp extends StatelessWidget {
           secondary: Colors.white,
         ),
         useMaterial3: true,
-        textTheme: TextTheme(
-          bodyLarge: const TextStyle(
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(
               fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
         ),
       ),
@@ -40,16 +77,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int tee = 10;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-          title: Text(widget.title),
-        ),
-        body:
-            UiMockup() // This trailing comma makes auto-formatting nicer for build methods.
-        );
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          InputYourRoutineElement(),
+          ChangeTheTee(),
+          Center(
+            child: InputValuation(),
+          ),
+          SaveYourRound()
+        ],
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:valuation_pre_shot/ui_elements/colored_container.dart';
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 
 class SingleValuation extends StatelessWidget {
-  String teeNumber = '1';
+  String strokeNumber = '1';
 
-  SingleValuation({super.key, required teeNumber}) {
-    this.teeNumber = teeNumber.toString();
+  SingleValuation({super.key, required strokeNumber}) {
+    this.strokeNumber = strokeNumber.toString();
   }
 
   @override
@@ -27,7 +26,7 @@ class SingleValuation extends StatelessWidget {
                 aLignment: 'left',
               ),
               StyledText(
-                aText: teeNumber,
+                aText: strokeNumber,
                 aWidth: 28,
                 aLignment: 'right',
               ),
@@ -41,7 +40,12 @@ class SingleValuation extends StatelessWidget {
                     border: InputBorder.none,
                     filled: true,
                     fillColor: Colors.white,
+
                   ),
+                  keyboardType: TextInputType.number,
+                 // inputFormatters: <TextInputFormatter>[
+                 //   FilteringTextInputFormatter.digitsOnly
+                 // ],
                 ),
               ),
             ],
