@@ -6,8 +6,6 @@ import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 
 import '../main.dart';
 
-//int tee = 23;
-
 class ChangeTheTee extends StatelessWidget {
   const ChangeTheTee({super.key});
 
@@ -42,5 +40,3 @@ class ChangeTheTee extends StatelessWidget {
     );
   }
 }
-
-

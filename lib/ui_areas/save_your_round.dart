@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
+import 'package:valuation_pre_shot/methods/pdf_stroke_page.dart';
 
 class SaveYourRound extends StatelessWidget {
-  const SaveYourRound({super.key});
+  SaveYourRound({super.key});
 
-  void _incrementCounter() {
-    String a = 'hallo';
-  }
+  final String aFileName = 'golf_stroke_valuation.pdf';
+  PdfStrokePage aStrokePage = PdfStrokePage();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,6 @@ class SaveYourRound extends StatelessWidget {
         Container(
           color: Colors.white,
           width: 30,
-
         ),
         Container(
           color: Theme.of(context).colorScheme.primary,
@@ -31,10 +31,19 @@ class SaveYourRound extends StatelessWidget {
           width: 30,
         ),
         FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.save),
+          onPressed: () async {
+            // generate a pdf
+
+            final strokePDF = await aStrokePage.generatePdf();
+            aStrokePage.savePdfFile(aFileName, strokePDF);
+            logger.d('pdf done');
+          },
+          tooltip: 'close a round and generate a pdf',
+          child: Icon(Icons.save, color: Theme.of(context).colorScheme.primary),
         ),
+        //PdfPreview(
+        //  build: (format) => generatePdf(format),
+        // ),
       ],
     );
   }

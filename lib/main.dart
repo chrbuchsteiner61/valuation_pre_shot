@@ -1,12 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
+
 import 'package:valuation_pre_shot/ui_areas/change_the_tee.dart';
 import 'package:valuation_pre_shot/ui_areas/input_valuation.dart';
 import 'package:valuation_pre_shot/ui_areas//input_your_routine_element.dart';
 import 'package:valuation_pre_shot/ui_areas//save_your_round.dart';
 
+var logger = Logger();
+
+// table of strokes per round
+List<List<int>> strokesPerRound = List<List<int>>.generate(
+    18, (index) => List<int>.generate(10, (int index) => 3, growable: false),
+    growable: false);
+
 void main() {
+  // test of list strokesPerRound
+  logger.d(strokesPerRound[3][5]);
+  // later may be to remove
   runApp(
     MultiProvider(
       providers: [
@@ -86,12 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          InputYourRoutineElement(),
-          ChangeTheTee(),
-          Center(
+          const InputYourRoutineElement(),
+          const ChangeTheTee(),
+           Center(
             child: InputValuation(),
           ),
           SaveYourRound()

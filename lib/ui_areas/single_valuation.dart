@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
+import 'package:valuation_pre_shot/methods/numerical_formatter.dart';
 
 class SingleValuation extends StatelessWidget {
   String strokeNumber = '1';
+  final TextEditingController aFunction;
 
-  SingleValuation({super.key, required strokeNumber}) {
+  SingleValuation({super.key, required strokeNumber, required this.aFunction}) {
     this.strokeNumber = strokeNumber.toString();
   }
 
@@ -33,19 +35,23 @@ class SingleValuation extends StatelessWidget {
               const SizedBox(
                 width: 5,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 38,
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: aFunction,
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     filled: true,
                     fillColor: Colors.white,
-
                   ),
+                  style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black),
                   keyboardType: TextInputType.number,
-                 // inputFormatters: <TextInputFormatter>[
-                 //   FilteringTextInputFormatter.digitsOnly
-                 // ],
+                  inputFormatters: [
+                    NumericalFormatter(min: 0, max: 6),
+                  ],
                 ),
               ),
             ],
