@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
           primary: Colors.green,
           secondary: Colors.white,
         ),
+        fontFamily: 'Noto',
         useMaterial3: true,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(
