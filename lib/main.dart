@@ -16,9 +16,6 @@ List<List<int>> strokesPerRound = List<List<int>>.generate(
     growable: false);
 
 void main() {
-  // test of list strokesPerRound
-  logger.d(strokesPerRound[3][5]);
-  // later may be to remove
   runApp(
     MultiProvider(
       providers: [
@@ -31,7 +28,6 @@ void main() {
 
 class ChangeNumber with ChangeNotifier, DiagnosticableTreeMixin {
   int _aNumber = 1;
-
   int get aTee => _aNumber;
 
   void inDecreaseANumber(int anAddedValue, int minValue, int maxValue) {
@@ -42,7 +38,6 @@ class ChangeNumber with ChangeNotifier, DiagnosticableTreeMixin {
     if (_aNumber < minValue) {
       _aNumber = minValue;
     }
-
     notifyListeners();
   }
 
@@ -61,6 +56,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -70,8 +66,10 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
         textTheme: const TextTheme(
-          bodyLarge: TextStyle(
+          bodyMedium: TextStyle(
               fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+          bodyLarge: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
         ),
       ),
       home: const MyHomePage(title: 'Bewerte Deine Pre-Shot-Routine'),
@@ -101,9 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const InputYourRoutineElement(),
+          InputYourRoutineElement(),
           const ChangeTheTee(),
-           Center(
+          Center(
             child: InputValuation(),
           ),
           SaveYourRound()

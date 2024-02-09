@@ -7,14 +7,17 @@ class InputValuation extends StatelessWidget {
 
   final int numberOfStrokes = 10;
   List<Widget> strokeTextFields = [];
-  TextEditingController aValuationController = TextEditingController();
+  List<TextEditingController> aValuationController = [];
 
   List<Widget> _getStrokes(
     int numberOfStrokes,
   ) {
     for (int i = 0; i < numberOfStrokes; i++) {
+      aValuationController.add(TextEditingController());
+    }
+    for (int i = 0; i < numberOfStrokes; i++) {
       strokeTextFields.addAll([
-        SingleValuation(strokeNumber: i + 1, aFunction: aValuationController)
+        SingleValuation(strokeNumber: i + 1, aFunction: aValuationController[i])
       ]);
     }
     return strokeTextFields;

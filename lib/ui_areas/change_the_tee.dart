@@ -27,7 +27,6 @@ class ChangeTheTee extends StatelessWidget {
           children: <Widget>[
             InDecreaseButton(aDirection: 'back'),
             StyledText(
-              //aText: tee.toString(),
               aText: '${context.watch<ChangeNumber>().aTee}',
               key: const Key('counterState'),
               aWidth: 36,

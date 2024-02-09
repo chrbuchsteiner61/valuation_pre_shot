@@ -28,7 +28,7 @@ class StyledText extends StatelessWidget {
       child: Text(
         aText,
         //style: normalTextStyle,
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.bodyMedium,
         textAlign: theAlignment,
       ),
     );

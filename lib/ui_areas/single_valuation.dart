@@ -44,10 +44,7 @@ class SingleValuation extends StatelessWidget {
                     filled: true,
                     fillColor: Colors.white,
                   ),
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
+                  style: Theme.of(context).textTheme.bodyLarge,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     NumericalFormatter(min: 0, max: 6),

@@ -32,10 +32,12 @@ class SaveYourRound extends StatelessWidget {
         ),
         FloatingActionButton(
           onPressed: () async {
-            // generate a pdf
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => PdfStrokePage()),
+            ); // generate a pdf
 
-            final strokePDF = await aStrokePage.generatePdf();
-            aStrokePage.savePdfFile(aFileName, strokePDF);
+            //final strokePDF = await aStrokePage._generatePdf();
+            //aStrokePage.savePdfFile(aFileName, strokePDF);
             logger.d('pdf done');
           },
           tooltip: 'close a round and generate a pdf',

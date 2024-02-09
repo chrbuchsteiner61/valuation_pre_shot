@@ -3,7 +3,9 @@ import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/ui_elements/colored_container.dart';
 
 class InputYourRoutineElement extends StatelessWidget {
-  const InputYourRoutineElement({super.key});
+  final TextEditingController aRoutineInputController = TextEditingController();
+
+  InputYourRoutineElement({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +20,18 @@ class InputYourRoutineElement extends StatelessWidget {
               aLignment: 'left',
             ),
           ),
-          const Expanded(
+          Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
               child: TextField(
-                decoration: InputDecoration(
+                controller: aRoutineInputController,
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Element der Pre-Shot-Routine',
                 ),
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
           ),
