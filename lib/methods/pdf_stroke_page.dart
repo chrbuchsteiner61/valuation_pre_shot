@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
@@ -13,33 +15,26 @@ var logger = Logger();
 
 class PdfStrokePage extends StatelessWidget {
   final String title = 'Stroke valuation';
+  List<List<String>> strokeTable = [
+    ['empty'],
+    ['empty, too']
+  ];
 
-  const PdfStrokePage({super.key});
+  PdfStrokePage({super.key, required this.strokeTable});
 
   @override
   Widget build(BuildContext context) {
     // for test reasons
 
-    String routineElement = 'ein Teil der Routine';
-    List<int> strokeRow = [];
-    List<List<int>> testStrokeTable = [];
-
-    int tees = 18;
-    int strokes = 10;
-    for (int i = 0; i < tees; i++) {
-      for (int j = 0; j < strokes; j++) {
-        strokeRow.add(2);
-      }
-      testStrokeTable.add(strokeRow);
-      strokeRow = [];
-    }
+    String routineElement = 'Ausrichtung';
+    logger.d('pdf_stroke..: $strokeTable.toString()');
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: Text(title)),
         body: PdfPreview(
-          build: (format) => _generatePdf(testStrokeTable, routineElement),
+          build: (format) => _generatePdf(strokeTable, routineElement),
         ),
       ),
     );
@@ -48,31 +43,26 @@ class PdfStrokePage extends StatelessWidget {
   Future<void> savePdfFile(String fileName, Uint8List byteList) async {
     final output = await getTemporaryDirectory();
     var filePath = '${output.path}/$fileName';
-    logger.d(filePath);
+    // logger.d(filePath);
     final file = File(filePath);
     await file.writeAsBytes(byteList);
     //await OpenDocument.openDocument(filePath: filePath);
   }
 
   Future<Uint8List> _generatePdf(
-      List<List<int>> strokeTable, String routineElement) async {
+      List<List<String>> aStrokeTable, String routineElement) async {
     // text formats
-    TextStyle formatH2 = TextStyle(
+    pw.TextStyle formatH2 = const pw.TextStyle(
       fontSize: 16,
     );
-    TextStyle formatP = TextStyle(
+    pw.TextStyle formatP = const pw.TextStyle(
       fontSize: 14,
     );
 
-    List<String> headRow = [];
-    headRow.add('Bahn / Schlag');
-    for (int i = 0; i < 10; i++) {
-      headRow.add((i + 1).toString());
-    }
-    List<String> leftColumn = [];
-    for (int i = 0; i < 18; i++) {
-      leftColumn.add((i + 1).toString());
-    }
+    logger.d(aStrokeTable.toString());
+
+    final DateFormat formatter = DateFormat('dd.mm.yyyy');
+    final String toDay = formatter.format(DateTime.now());
 
     final pdf = pw.Document();
     pdf.addPage(
@@ -81,18 +71,23 @@ class PdfStrokePage extends StatelessWidget {
           build: (context) {
             return pw.Column(
               children: [
-                pw.Row(
-                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                  children: [
-                    pw.Text(
-                      'Runde von heute',
-                    ),
-                    pw.Text(
-                        'Beurteilter Teil der Pre shot-Routine: $routineElement'),
-                  ],
+                pw.Container(
+                  alignment: pw.Alignment.centerLeft,
+                  child: pw.Text(
+                    'Runde vom $toDay',
+                    style: formatH2,
+                  ),
                 ),
+                pw.Container(
+                  alignment: pw.Alignment.centerLeft,
+                  child: pw.Text(
+                    'Beurteilter Teil der Pre shot-Routine: $routineElement',
+                    style: formatH2,
+                  ),
+                ),
+                pw.SizedBox(width: 200, height: 40),
                 pw.TableHelper.fromTextArray(
-                  data: strokeTable,
+                  data: aStrokeTable,
                   cellAlignment: pw.Alignment.topRight,
                 ),
               ],

@@ -41,6 +41,7 @@ dependencies:
   path_provider: ^2.1.2
   permission_handler: ^11.2.0
   printing: ^5.11.1
+  intl: ^0.19.0
   #open_document: ^1.0.7
 
 dev_dependencies:
@@ -83,9 +84,9 @@ flutter:
   # example:
 
   fonts:
-    - family: Noto
-      fonts:
-        - asset: fonts/NotoSans-Medium.ttf
+      - family: Noto
+        fonts:
+          - asset: asset/fonts/NotoSans-Medium.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

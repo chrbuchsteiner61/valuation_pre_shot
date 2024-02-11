@@ -4,10 +4,11 @@ import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/methods/pdf_stroke_page.dart';
 
 class SaveYourRound extends StatelessWidget {
-  SaveYourRound({super.key});
+  List<List<String>> aTable = [];
+  SaveYourRound({super.key, required List<List<String>> this.aTable});
 
   final String aFileName = 'golf_stroke_valuation.pdf';
-  PdfStrokePage aStrokePage = PdfStrokePage();
+ // PdfStrokePage aStrokePage = PdfStrokePage();
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +34,12 @@ class SaveYourRound extends StatelessWidget {
         FloatingActionButton(
           onPressed: () async {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => PdfStrokePage()),
+              MaterialPageRoute(builder: (context) => PdfStrokePage(strokeTable: aTable)),
             ); // generate a pdf
 
             //final strokePDF = await aStrokePage._generatePdf();
             //aStrokePage.savePdfFile(aFileName, strokePDF);
-            logger.d('pdf done');
+            logger.d(aTable);
           },
           tooltip: 'close a round and generate a pdf',
           child: Icon(Icons.save, color: Theme.of(context).colorScheme.primary),
