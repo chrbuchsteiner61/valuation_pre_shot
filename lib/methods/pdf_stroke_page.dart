@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-import 'package:intl/date_symbol_data_local.dart';
+// import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
@@ -14,27 +14,26 @@ import 'package:printing/printing.dart';
 var logger = Logger();
 
 class PdfStrokePage extends StatelessWidget {
-  final String title = 'Stroke valuation';
-  List<List<String>> strokeTable = [
-    ['empty'],
-    ['empty, too']
-  ];
+  final String title = 'Post Shot Routine: Bewertung';
+  
+  //final dynamic aFunction;
+  List<List<String>> strokeTable = [['empty'], ['second empty']];
+  final String aRoutineElement;
 
-  PdfStrokePage({super.key, required this.strokeTable});
+  PdfStrokePage(
+      {super.key, required this.strokeTable, required this.aRoutineElement});
 
   @override
   Widget build(BuildContext context) {
-    // for test reasons
-
-    String routineElement = 'Ausrichtung';
-    logger.d('pdf_stroke..: $strokeTable.toString()');
+  // logger.d('pdf_stroke <29> $aRoutineElement');
+   logger.d(strokeTable.toString());
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: Text(title)),
         body: PdfPreview(
-          build: (format) => _generatePdf(strokeTable, routineElement),
+          build: (format) => _generatePdf(strokeTable, aRoutineElement),
         ),
       ),
     );
@@ -59,9 +58,7 @@ class PdfStrokePage extends StatelessWidget {
       fontSize: 14,
     );
 
-    logger.d(aStrokeTable.toString());
-
-    final DateFormat formatter = DateFormat('dd.mm.yyyy');
+    final DateFormat formatter = DateFormat('d.MM.yyyy');
     final String toDay = formatter.format(DateTime.now());
 
     final pdf = pw.Document();
@@ -89,6 +86,7 @@ class PdfStrokePage extends StatelessWidget {
                 pw.TableHelper.fromTextArray(
                   data: aStrokeTable,
                   cellAlignment: pw.Alignment.topRight,
+                  cellStyle: formatP,
                 ),
               ],
               //crossAxisAlignment: pw.CrossAxisAlignment.start,

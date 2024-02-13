@@ -13,17 +13,17 @@ class StyledText extends StatelessWidget {
       required this.aLignment}) {
     switch (aLignment) {
       case 'left':
-        this.theAlignment = TextAlign.left;
+        theAlignment = TextAlign.left;
       case 'center':
-        this.theAlignment = TextAlign.center;
+        theAlignment = TextAlign.center;
       case 'right':
-        this.theAlignment = TextAlign.right;
+        theAlignment = TextAlign.right;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: aWidth,
       child: Text(
         aText,

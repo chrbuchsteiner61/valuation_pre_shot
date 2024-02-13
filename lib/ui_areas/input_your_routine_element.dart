@@ -3,9 +3,9 @@ import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/ui_elements/colored_container.dart';
 
 class InputYourRoutineElement extends StatelessWidget {
-  final TextEditingController aRoutineInputController = TextEditingController();
+  final TextEditingController aController;
 
-  InputYourRoutineElement({super.key});
+  const InputYourRoutineElement({super.key, required this.aController});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class InputYourRoutineElement extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
               child: TextField(
-                controller: aRoutineInputController,
+                controller: aController,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   filled: true,

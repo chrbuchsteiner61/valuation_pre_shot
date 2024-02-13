@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:valuation_pre_shot/ui_areas/single_valuation.dart';
 
-class InputValuation extends StatelessWidget {
-  InputValuation({super.key});
+import '../main.dart';
 
-  final int numberOfStrokes = 10;
+class InputValuation extends StatelessWidget {
+  final int numberOfStrokes;
+  final int tee;
+  InputValuation({super.key, required this.numberOfStrokes, required this.tee});
+
   List<Widget> strokeTextFields = [];
   List<TextEditingController> aValuationController = [];
 
@@ -25,6 +28,7 @@ class InputValuation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logger.d(tee);
     return Center(
       child: Column(children: _getStrokes(numberOfStrokes)),
       // ],

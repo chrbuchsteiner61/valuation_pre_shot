@@ -6,7 +6,9 @@
     <application
         android:label="valuation_pre_shot"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
+
+        <!--android:enableOnBackInvokedCallback="true" -->
 
         <activity
             android:name=".MainActivity"
@@ -44,6 +46,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+
 
     </application>
 </manifest>

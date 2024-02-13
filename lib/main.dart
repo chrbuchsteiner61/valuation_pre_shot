@@ -10,21 +10,29 @@ import 'package:valuation_pre_shot/ui_areas//save_your_round.dart';
 
 var logger = Logger();
 
-// table of strokes per round
-List<List<int>> strokesPerRound = List<List<int>>.generate(
-    18, (index) => List<int>.generate(10, (int index) => 3, growable: false),
-    growable: false);
-
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ChangeNumber()),
-        ChangeNotifierProvider(create: (_) => ChangeRoutine())
+        ChangeNotifierProvider(create: (_) => ChangeStrokeTable())
       ],
       child: const MyApp(),
     ),
   );
+}
+
+class ChangeStrokeTable with ChangeNotifier, DiagnosticableTreeMixin {
+  // table of strokes per round
+  List<List<String>> _aTable = List<List<String>>.generate(18,
+      (index) => List<String>.generate(10, (int index) => '0', growable: false),
+      growable: false);
+
+  List<List<String>> get strokesTable => _aTable;
+
+  void changeTable() {
+    notifyListeners();
+  }
 }
 
 class ChangeNumber with ChangeNotifier, DiagnosticableTreeMixin {
@@ -48,17 +56,6 @@ class ChangeNumber with ChangeNotifier, DiagnosticableTreeMixin {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(IntProperty('count', aTee));
-  }
-}
-
-class ChangeRoutine with ChangeNotifier, DiagnosticableTreeMixin {
-  String _aString = 'something';
-  String get anElementRoutine => _aString;
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(StringProperty('anElement', anElementRoutine));
   }
 }
 
@@ -92,22 +89,48 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
   final String title;
+
+  const MyHomePage({super.key, required this.title});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int tee = 10;
+  String version = '0.98 / ' + (DateTime.now()).toString();
+  int tee = 1;
+  final int numberOfTees = 18;
+  final int numberOfStrokes = 10;
 
-  List<List<String>> _generateStrokeTable() {
-    List<List<String>> aTable = List<List<String>>.generate(
-        19, (i) => List<String>.generate(11, (j) => '0', growable: false),
-        growable: false);
+  // initialize with 18 + 1 tees and 10 +1 strokes
+  List<List<String>> aStrokeTable = List<List<String>>.generate((19),
+      (index) => List<String>.generate(11, (int index) => '0', growable: false),
+      growable: false);
 
+  String selectedRoutine = 'an initial routine value';
+
+  final aRoutineInputController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    aRoutineInputController.addListener(_getTextOutOfARoutineInputController);
+  }
+
+  @override
+  void dispose() {
+    aRoutineInputController.dispose();
+    super.dispose();
+  }
+
+  String _getTextOutOfARoutineInputController() {
+    selectedRoutine = aRoutineInputController.text;
+    logger.d(selectedRoutine);
+    return selectedRoutine;
+  }
+
+  List<List<String>> _addjustStrokeTable(List<List<String>> aTable) {
     aTable[0][0] = 'Bahn / Schlag';
 
     for (int i = 1; i < 11; i++) {
@@ -123,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<List<String>> aStrokeTable = _generateStrokeTable();
+    aStrokeTable = _addjustStrokeTable(aStrokeTable);
     logger.d(aStrokeTable.toString());
 
     return Scaffold(
@@ -134,13 +157,22 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          InputYourRoutineElement(),
+          InputYourRoutineElement(
+            aController: aRoutineInputController,
+          ),
           const ChangeTheTee(),
           Center(
-            child: InputValuation(),
+            child: InputValuation(numberOfStrokes: numberOfStrokes, tee: tee),
           ),
-          SaveYourRound(aTable: aStrokeTable)
+          SaveYourRound(
+            aTable: aStrokeTable,
+            aFunction: _getTextOutOfARoutineInputController,
+          )
         ],
+      ),
+      bottomSheet: Text(
+        version,
+        style: Theme.of(context).textTheme.bodyLarge,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

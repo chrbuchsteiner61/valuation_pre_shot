@@ -4,14 +4,18 @@ import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/methods/pdf_stroke_page.dart';
 
 class SaveYourRound extends StatelessWidget {
-  List<List<String>> aTable = [];
-  SaveYourRound({super.key, required List<List<String>> this.aTable});
+  final List<List<String>> aTable;
+  final dynamic aFunction;
 
-  final String aFileName = 'golf_stroke_valuation.pdf';
- // PdfStrokePage aStrokePage = PdfStrokePage();
+  const SaveYourRound({
+    super.key,
+    required this.aTable,
+    required this.aFunction,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // logger.d(aTable.toString());
     return Row(
       children: <Widget>[
         Container(
@@ -33,33 +37,19 @@ class SaveYourRound extends StatelessWidget {
         ),
         FloatingActionButton(
           onPressed: () async {
+            String aRoutine = aFunction();
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => PdfStrokePage(strokeTable: aTable)),
+              MaterialPageRoute(
+                  builder: (context) => PdfStrokePage(
+                        strokeTable: aTable,
+                        aRoutineElement: aRoutine,
+                      )),
             ); // generate a pdf
-
-            //final strokePDF = await aStrokePage._generatePdf();
-            //aStrokePage.savePdfFile(aFileName, strokePDF);
-            logger.d(aTable);
           },
           tooltip: 'close a round and generate a pdf',
           child: Icon(Icons.save, color: Theme.of(context).colorScheme.primary),
         ),
-        //PdfPreview(
-        //  build: (format) => generatePdf(format),
-        // ),
       ],
     );
   }
 }
-
-//int _counter = 0;
-
-//void _incrementCounter() {
-//setState(() {
-// This call to setState tells the Flutter framework that something has
-// changed in this State, which causes it to rerun the build method below
-// so that the display can reflect the updated values. If we changed
-// _counter without calling setState(), then the build method would not be
-// called again, and so nothing would appear to happen.
-//_counter++;
-//});}
