@@ -15,6 +15,11 @@ class SaveYourRound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StyledText saveRoundText = StyledText(
+      aText: 'Runde abschliessen ',
+      aWidth: 200,
+      aLignment: 'left',
+    );
     // logger.d(aTable.toString());
     return Row(
       children: <Widget>[
@@ -24,12 +29,8 @@ class SaveYourRound extends StatelessWidget {
         ),
         Container(
           color: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          child: StyledText(
-            aText: 'Runde abschliessen ',
-            aWidth: 200,
-            aLignment: 'left',
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: saveRoundText,
         ),
         Container(
           color: Colors.white,

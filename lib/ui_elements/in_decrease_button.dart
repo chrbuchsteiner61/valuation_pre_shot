@@ -44,8 +44,9 @@ class InDecreaseButton extends StatelessWidget {
           color: Colors.black,
           tooltip: 'back or forward',
           onPressed: () => context
-              .read<ChangeNumber>()
-              .inDecreaseANumber(addValue, lowestTee, highestTee)),
+              .read<ChangeTheTeeProvider>()
+              .inDecreaseANumber(addValue, lowestTee, highestTee)
+      ),
     );
   }
 }

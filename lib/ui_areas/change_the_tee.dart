@@ -12,8 +12,6 @@ class ChangeTheTee extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredContainer(
-      //padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      //color: Colors.green,
       aWidget: Row(children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -27,7 +25,7 @@ class ChangeTheTee extends StatelessWidget {
           children: <Widget>[
             InDecreaseButton(aDirection: 'back'),
             StyledText(
-              aText: '${context.watch<ChangeNumber>().aTee}',
+              aText: '${context.watch<ChangeTheTeeProvider>().aTee}',
               key: const Key('counterState'),
               aWidth: 36,
               aLignment: 'center',

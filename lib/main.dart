@@ -14,15 +14,27 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ChangeNumber()),
-        ChangeNotifierProvider(create: (_) => ChangeStrokeTable())
+        ChangeNotifierProvider(create: (_) => ChangeTheTeeProvider()),
+        ChangeNotifierProvider(create: (_) => ChangeStrokeTable()),
+        ChangeNotifierProvider(create: (_) => ChangeStrokeValuationOfATee())
       ],
       child: const MyApp(),
     ),
   );
 }
 
-class ChangeStrokeTable with ChangeNotifier, DiagnosticableTreeMixin {
+class ChangeStrokeValuationOfATee with ChangeNotifier {
+  // table of strokes per round
+  List<String> _strokesOfATee = List<String>.generate(10, (int index) => '0', growable: false);
+
+  List<String> get strokesOfATee => _strokesOfATee;
+
+  void changeStrokesOfATee() {
+    notifyListeners();
+  }
+}
+
+class ChangeStrokeTable with ChangeNotifier {
   // table of strokes per round
   List<List<String>> _aTable = List<List<String>>.generate(18,
       (index) => List<String>.generate(10, (int index) => '0', growable: false),
@@ -31,16 +43,21 @@ class ChangeStrokeTable with ChangeNotifier, DiagnosticableTreeMixin {
   List<List<String>> get strokesTable => _aTable;
 
   void changeTable() {
+    // some bimbam
+
     notifyListeners();
   }
 }
 
-class ChangeNumber with ChangeNotifier, DiagnosticableTreeMixin {
+class ChangeTheTeeProvider with ChangeNotifier {
   int _aNumber = 1;
 
   int get aTee => _aNumber;
 
-  void inDecreaseANumber(int anAddedValue, int minValue, int maxValue) {
+  void inDecreaseANumber(int anAddedValue, int minValue, int maxValue ) {
+    int oldTee = _aNumber;
+
+    // getStrokesOfAController(inputTeeController);
     _aNumber += anAddedValue;
     if (_aNumber > maxValue) {
       _aNumber = maxValue;
@@ -48,14 +65,11 @@ class ChangeNumber with ChangeNotifier, DiagnosticableTreeMixin {
     if (_aNumber < minValue) {
       _aNumber = minValue;
     }
-    notifyListeners();
-  }
 
-  /// Makes `Counter` readable inside the devtools by listing all of its properties
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(IntProperty('count', aTee));
+    // save valuations from input_valuation in stroketable
+    // write values in input_valuation for new tee
+
+    notifyListeners();
   }
 }
 
@@ -98,7 +112,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String version = '0.98 / ' + (DateTime.now()).toString();
+  String version = '0.985 / ${DateTime.now().toString()}';
   int tee = 1;
   final int numberOfTees = 18;
   final int numberOfStrokes = 10;
@@ -107,6 +121,9 @@ class _MyHomePageState extends State<MyHomePage> {
   List<List<String>> aStrokeTable = List<List<String>>.generate((19),
       (index) => List<String>.generate(11, (int index) => '0', growable: false),
       growable: false);
+
+  List<String> allStrokeOfATeeValuated =
+      List<String>.generate(10, (index) => '', growable: false);
 
   String selectedRoutine = 'an initial routine value';
 
@@ -149,11 +166,15 @@ class _MyHomePageState extends State<MyHomePage> {
     aStrokeTable = _addjustStrokeTable(aStrokeTable);
     logger.d(aStrokeTable.toString());
 
+    Text bottomText = Text(
+      version,
+      style: Theme.of(context).textTheme.bodyLarge,
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
+        title: Text(widget.title),),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -162,7 +183,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           const ChangeTheTee(),
           Center(
-            child: InputValuation(numberOfStrokes: numberOfStrokes, tee: tee),
+            child: InputValuation(
+                numberOfStrokes: numberOfStrokes,
+                tee: tee,
+                strokeValuation: allStrokeOfATeeValuated),
           ),
           SaveYourRound(
             aTable: aStrokeTable,
@@ -170,10 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      bottomSheet: Text(
-        version,
-        style: Theme.of(context).textTheme.bodyLarge,
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomSheet: bottomText, // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
