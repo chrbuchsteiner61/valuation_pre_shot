@@ -23,11 +23,31 @@ void main() {
   );
 }
 
-class ChangeStrokeValuationOfATee with ChangeNotifier {
-  // table of strokes per round
-  List<String> _strokesOfATee = List<String>.generate(10, (int index) => '0', growable: false);
+class ARow {
+  int numberOfRow = 0;
+  List<String> valueRow = [];
 
-  List<String> get strokesOfATee => _strokesOfATee;
+  ARow(int numberOfElements, String initialValue)
+  {
+    this.valueRow = List<String>.generate(numberOfElements, (int index) => initialValue, growable: false);
+  }
+}
+
+class ATable {
+  List<List<String>> values = [];
+
+  ATable(int numberOfRows, int numberOfColumns, String initialValue) {
+    this.values = List<List<String>>.generate(numberOfRows,
+            (index) => List<String>.generate(numberOfColumns, (int index) => initialValue, growable: false),
+        growable: false);
+  }
+}
+
+class ChangeStrokeValuationOfATee with ChangeNotifier {
+
+  ARow _strokesOfATee = ARow(10, '0');
+
+  ARow get strokesOfATee => _strokesOfATee;
 
   void changeStrokesOfATee() {
     notifyListeners();
@@ -36,11 +56,10 @@ class ChangeStrokeValuationOfATee with ChangeNotifier {
 
 class ChangeStrokeTable with ChangeNotifier {
   // table of strokes per round
-  List<List<String>> _aTable = List<List<String>>.generate(18,
-      (index) => List<String>.generate(10, (int index) => '0', growable: false),
-      growable: false);
+  // 18 tees, 10 strokes plus overhead and a column on the side
+  ATable _aTable = ATable(19, 11, '0');
 
-  List<List<String>> get strokesTable => _aTable;
+  ATable get strokesTable => _aTable;
 
   void changeTable() {
     // some bimbam
@@ -112,18 +131,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String version = '0.985 / ${DateTime.now().toString()}';
+  String version = '0.987 / ${DateTime.now().toString()}';
   int tee = 1;
   final int numberOfTees = 18;
   final int numberOfStrokes = 10;
 
   // initialize with 18 + 1 tees and 10 +1 strokes
-  List<List<String>> aStrokeTable = List<List<String>>.generate((19),
-      (index) => List<String>.generate(11, (int index) => '0', growable: false),
-      growable: false);
+  ATable aStrokeTable = ATable(19, 11, '0');
 
-  List<String> allStrokeOfATeeValuated =
-      List<String>.generate(10, (index) => '', growable: false);
+  ARow allStrokeOfATeeValuated = ARow(10, '');
 
   String selectedRoutine = 'an initial routine value';
 
@@ -147,15 +163,15 @@ class _MyHomePageState extends State<MyHomePage> {
     return selectedRoutine;
   }
 
-  List<List<String>> _addjustStrokeTable(List<List<String>> aTable) {
-    aTable[0][0] = 'Bahn / Schlag';
+  ATable _addjustStrokeTable(ATable aTable) {
+    aTable.values[0][0] = 'Bahn / Schlag';
 
     for (int i = 1; i < 11; i++) {
-      aTable[0][i] = i.toString();
+      aTable.values[0][i] = i.toString();
     }
 
     for (int j = 1; j < 19; j++) {
-      aTable[j][0] = j.toString();
+      aTable.values[j][0] = j.toString();
     }
 
     return aTable;

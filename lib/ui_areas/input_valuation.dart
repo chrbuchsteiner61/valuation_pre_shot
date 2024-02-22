@@ -9,7 +9,7 @@ import '../main.dart';
 class InputValuation extends StatelessWidget {
   final int numberOfStrokes;
   final int tee;
-  final List<String> strokeValuation;
+  final ARow strokeValuation;
 
   InputValuation(
       {super.key,
@@ -22,11 +22,11 @@ class InputValuation extends StatelessWidget {
 
   List<Widget> _getStrokes(
     int numberOfStrokes,
-    List<String> aValuationOfStrokes,
+    ARow aValuationOfStrokes,
   ) {
     for (int i = 0; i < numberOfStrokes; i++) {
       aValuationController
-          .add(TextEditingController(text: aValuationOfStrokes[i]));
+          .add(TextEditingController(text: aValuationOfStrokes.valueRow[i]));
     }
     for (int i = 0; i < numberOfStrokes; i++) {
       strokeTextFields.addAll([
@@ -40,7 +40,7 @@ class InputValuation extends StatelessWidget {
   void getStrokesOfAController(List<TextEditingController> controllers) {
     int i = 0;
     for (var controller in controllers) {
-      strokeValuation[i] = controller.text;
+      strokeValuation.valueRow[i] = controller.text;
       i += 1;
     }
     logger.d(strokeValuation.toString());

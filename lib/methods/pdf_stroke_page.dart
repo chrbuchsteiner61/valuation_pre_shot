@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-// import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'dart:io';
 import 'dart:typed_data';
-// import 'package:open_document/open_document.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
+import 'package:valuation_pre_shot/main.dart';
 
 var logger = Logger();
 
@@ -17,7 +16,7 @@ class PdfStrokePage extends StatelessWidget {
   final String title = 'Post Shot Routine: Bewertung';
   
   //final dynamic aFunction;
-  List<List<String>> strokeTable = [['empty'], ['second empty']];
+  ATable strokeTable = ATable(19,11, '0');
   final String aRoutineElement;
 
   PdfStrokePage(
@@ -26,7 +25,8 @@ class PdfStrokePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   // logger.d('pdf_stroke <29> $aRoutineElement');
-   logger.d(strokeTable.toString());
+    strokeTable.values[1][1] = '23';
+   logger.d(strokeTable.values.toString());
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -45,11 +45,10 @@ class PdfStrokePage extends StatelessWidget {
     // logger.d(filePath);
     final file = File(filePath);
     await file.writeAsBytes(byteList);
-    //await OpenDocument.openDocument(filePath: filePath);
   }
 
   Future<Uint8List> _generatePdf(
-      List<List<String>> aStrokeTable, String routineElement) async {
+      ATable aStrokeTable, String routineElement) async {
     // text formats
     pw.TextStyle formatH2 = const pw.TextStyle(
       fontSize: 16,
@@ -84,7 +83,7 @@ class PdfStrokePage extends StatelessWidget {
                 ),
                 pw.SizedBox(width: 200, height: 40),
                 pw.TableHelper.fromTextArray(
-                  data: aStrokeTable,
+                  data: aStrokeTable.values,
                   cellAlignment: pw.Alignment.topRight,
                   cellStyle: formatP,
                 ),
