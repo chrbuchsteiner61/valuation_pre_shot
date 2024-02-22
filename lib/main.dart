@@ -27,9 +27,18 @@ class ARow {
   int numberOfRow = 0;
   List<String> valueRow = [];
 
-  ARow(int numberOfElements, String initialValue)
-  {
-    this.valueRow = List<String>.generate(numberOfElements, (int index) => initialValue, growable: false);
+  ARow(int numberOfElements, String initialValue) {
+    valueRow = List<String>.generate(
+        numberOfElements + 1, (int index) => initialValue,
+        growable: false);
+    valueRow[0] = (numberOfElements + 1).toString();
+  }
+
+  void getStrokesFromTable(ATable aTable, int theNewTee) {
+    numberOfRow = theNewTee;
+    for (int i=1; i< int.parse(valueRow[0]); i++) {
+      valueRow[i] = aTable.values[theNewTee][i];
+    }
   }
 }
 
@@ -37,14 +46,24 @@ class ATable {
   List<List<String>> values = [];
 
   ATable(int numberOfRows, int numberOfColumns, String initialValue) {
-    this.values = List<List<String>>.generate(numberOfRows,
-            (index) => List<String>.generate(numberOfColumns, (int index) => initialValue, growable: false),
+    values = List<List<String>>.generate(
+        numberOfRows,
+        (index) => List<String>.generate(
+            numberOfColumns, (int index) => initialValue,
+            growable: false),
         growable: false);
+  }
+
+  void updateValuesOfARow(ARow aRow) {
+    int theTee = aRow.numberOfRow;
+
+    for (int i = 1; i < int.parse(aRow.valueRow[0]); i++) {
+      values[theTee][i] = aRow.valueRow[i];
+    }
   }
 }
 
 class ChangeStrokeValuationOfATee with ChangeNotifier {
-
   ARow _strokesOfATee = ARow(10, '0');
 
   ARow get strokesOfATee => _strokesOfATee;
@@ -73,7 +92,7 @@ class ChangeTheTeeProvider with ChangeNotifier {
 
   int get aTee => _aNumber;
 
-  void inDecreaseANumber(int anAddedValue, int minValue, int maxValue ) {
+  void inDecreaseANumber(int anAddedValue, int minValue, int maxValue) {
     int oldTee = _aNumber;
 
     // getStrokesOfAController(inputTeeController);
@@ -190,7 +209,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),),
+        title: Text(widget.title),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -210,7 +230,8 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      bottomSheet: bottomText, // This trailing comma makes auto-formatting nicer for build methods.
+      bottomSheet:
+          bottomText, // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

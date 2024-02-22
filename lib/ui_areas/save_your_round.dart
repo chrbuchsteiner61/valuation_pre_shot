@@ -31,8 +31,6 @@ class SaveYourRound extends StatelessWidget {
       width: 30,
     );
 
-    aTable.values[5][5] = '55';
-    logger.d(aTable.values.toString());
     return Row(
       children: <Widget>[
         aSpaceBetween,
@@ -45,6 +43,14 @@ class SaveYourRound extends StatelessWidget {
         FloatingActionButton(
           onPressed: () async {
             String aRoutine = aFunction();
+            // get a row with tee
+            // for Test
+            ARow testRow = ARow(10, 'X');
+            testRow.numberOfRow = 8;
+            aTable.updateValuesOfARow(testRow);
+            //put a row from table to new tee
+            testRow.getStrokesFromTable(aTable, 10);
+            logger.d(testRow.valueRow);
             Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (context) => PdfStrokePage(

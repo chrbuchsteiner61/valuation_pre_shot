@@ -14,9 +14,9 @@ var logger = Logger();
 
 class PdfStrokePage extends StatelessWidget {
   final String title = 'Post Shot Routine: Bewertung';
-  
+
   //final dynamic aFunction;
-  ATable strokeTable = ATable(19,11, '0');
+  final ATable strokeTable;
   final String aRoutineElement;
 
   PdfStrokePage(
@@ -24,9 +24,7 @@ class PdfStrokePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  // logger.d('pdf_stroke <29> $aRoutineElement');
-    strokeTable.values[1][1] = '23';
-   logger.d(strokeTable.values.toString());
+    logger.d(strokeTable.values.toString());
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
