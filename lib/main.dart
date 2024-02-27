@@ -64,6 +64,7 @@ class ATable {
 }
 
 class ChangeStrokeValuationOfATee with ChangeNotifier {
+  // 10 columns for strokes, 1 additional for number of strokes
   ARow _strokesOfATee = ARow(10, '0');
 
   ARow get strokesOfATee => _strokesOfATee;
@@ -150,7 +151,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String version = '0.987 / ${DateTime.now().toString()}';
+  String version = '0.988 / ${DateTime.now().toString()}';
   int tee = 1;
   final int numberOfTees = 18;
   final int numberOfStrokes = 10;
@@ -178,7 +179,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _getTextOutOfARoutineInputController() {
     selectedRoutine = aRoutineInputController.text;
-    logger.d(selectedRoutine);
     return selectedRoutine;
   }
 
@@ -199,7 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     aStrokeTable = _addjustStrokeTable(aStrokeTable);
-    logger.d(aStrokeTable.toString());
+    logger.d(aStrokeTable.values.toString());
 
     Text bottomText = Text(
       version,
@@ -217,7 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
           InputYourRoutineElement(
             aController: aRoutineInputController,
           ),
-          const ChangeTheTee(),
+          ChangeTheTee(aTable: aStrokeTable),
           Center(
             child: InputValuation(
                 numberOfStrokes: numberOfStrokes,

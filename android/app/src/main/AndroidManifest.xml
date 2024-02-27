@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="valuation_pre_shot"
+        android:label="Bewertung Pre Shot"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
 

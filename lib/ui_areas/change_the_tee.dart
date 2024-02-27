@@ -7,7 +7,8 @@ import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import '../main.dart';
 
 class ChangeTheTee extends StatelessWidget {
-  const ChangeTheTee({super.key});
+  final ATable aTable;
+  const ChangeTheTee({super.key, required this.aTable,});
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +24,14 @@ class ChangeTheTee extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            InDecreaseButton(aDirection: 'back'),
+            InDecreaseButton(aDirection: 'back', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee,),
             StyledText(
               aText: '${context.watch<ChangeTheTeeProvider>().aTee}',
               key: const Key('counterState'),
               aWidth: 36,
               aLignment: 'center',
             ),
-            InDecreaseButton(aDirection: 'forward'),
+            InDecreaseButton(aDirection: 'forward', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee,),
           ],
         ),
       ]),

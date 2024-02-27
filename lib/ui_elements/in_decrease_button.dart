@@ -9,8 +9,16 @@ class InDecreaseButton extends StatelessWidget {
   String aDirection;
   final int lowestTee = 1;
   final int highestTee = 18;
+  final ATable aTable;
 
-  InDecreaseButton({super.key, required this.aDirection});
+  final int previousTee;
+  int newTee = 0;
+
+  InDecreaseButton(
+      {super.key,
+      required this.aDirection,
+      required this.aTable,
+      required this.previousTee});
 
   Icon anIcon = const Icon(Icons.arrow_forward);
   int addValue = 0;
@@ -31,6 +39,8 @@ class InDecreaseButton extends StatelessWidget {
         addValue = 0;
     }
 
+    newTee = previousTee + addValue;
+
     return Container(
       decoration: BoxDecoration(
           border: Border.all(
@@ -43,10 +53,25 @@ class InDecreaseButton extends StatelessWidget {
           icon: anIcon,
           color: Colors.black,
           tooltip: 'back or forward',
-          onPressed: () => context
-              .read<ChangeTheTeeProvider>()
-              .inDecreaseANumber(addValue, lowestTee, highestTee)
-      ),
+          onPressed: () {
+            context
+                .read<ChangeTheTeeProvider>()
+                .inDecreaseANumber(addValue, lowestTee, highestTee);
+
+            // get a row with tee
+            // for Test
+            logger.d(previousTee);
+            logger.d(newTee);
+            ARow testRow = ARow(10, 'Test');
+            testRow.numberOfRow = previousTee;
+            aTable.updateValuesOfARow(testRow);
+            //put a row from table to new tee
+            testRow.getStrokesFromTable(aTable, newTee);
+            // testing
+            logger.d(aTable.values.toString());
+            logger.d(testRow.valueRow);
+            logger.d(testRow.numberOfRow);
+          }),
     );
   }
 }
