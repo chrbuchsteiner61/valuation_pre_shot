@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +36,7 @@ class ARow {
 
   void getStrokesFromTable(ATable aTable, int theNewTee) {
     numberOfRow = theNewTee;
-    for (int i=1; i< int.parse(valueRow[0]); i++) {
+    for (int i = 1; i < int.parse(valueRow[0]); i++) {
       valueRow[i] = aTable.values[theNewTee][i];
     }
   }
@@ -58,6 +58,7 @@ class ATable {
     int theTee = aRow.numberOfRow;
 
     for (int i = 1; i < int.parse(aRow.valueRow[0]); i++) {
+      logger.d(aRow.valueRow[i]);
       values[theTee][i] = aRow.valueRow[i];
     }
   }
@@ -94,7 +95,6 @@ class ChangeTheTeeProvider with ChangeNotifier {
   int get aTee => _aNumber;
 
   void inDecreaseANumber(int anAddedValue, int minValue, int maxValue) {
-    int oldTee = _aNumber;
 
     // getStrokesOfAController(inputTeeController);
     _aNumber += anAddedValue;
@@ -161,6 +161,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ARow allStrokeOfATeeValuated = ARow(10, '');
 
+  String aValuation = '';
+
+  final aStrokeController = TextEditingController();
+
+  final List<TextEditingController> strokesOfATeeController = [];
+
   String selectedRoutine = 'an initial routine value';
 
   final aRoutineInputController = TextEditingController();
@@ -169,17 +175,36 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     aRoutineInputController.addListener(_getTextOutOfARoutineInputController);
+    for (TextEditingController aController in strokesOfATeeController) {
+      aController.addListener(_getTextOutOfAStrokeController);
+    }
   }
 
   @override
   void dispose() {
     aRoutineInputController.dispose();
+    for (TextEditingController aController in strokesOfATeeController) {
+      aController.dispose();
+    }
     super.dispose();
   }
 
   String _getTextOutOfARoutineInputController() {
     selectedRoutine = aRoutineInputController.text;
     return selectedRoutine;
+  }
+
+  String _getTextOutOfAStrokeController() {
+    aValuation = aStrokeController.text;
+    return aValuation;
+  }
+
+  List<String> _getValuationsOutOfATeeController() {
+    List<String> valuations = ['10'];
+    for (TextEditingController aController in strokesOfATeeController) {
+      valuations.add(aController.text);
+    }
+    return valuations;
   }
 
   ATable _addjustStrokeTable(ATable aTable) {
@@ -206,6 +231,10 @@ class _MyHomePageState extends State<MyHomePage> {
       style: Theme.of(context).textTheme.bodyLarge,
     );
 
+    for (int i = 0; i < 10; i++) {
+      strokesOfATeeController.add(TextEditingController(text: ''));
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -217,12 +246,14 @@ class _MyHomePageState extends State<MyHomePage> {
           InputYourRoutineElement(
             aController: aRoutineInputController,
           ),
-          ChangeTheTee(aTable: aStrokeTable),
+          ChangeTheTee(aTable: aStrokeTable, aFunction: _getValuationsOutOfATeeController),
           Center(
             child: InputValuation(
-                numberOfStrokes: numberOfStrokes,
-                tee: tee,
-                strokeValuation: allStrokeOfATeeValuated),
+              numberOfStrokes: numberOfStrokes,
+              tee: tee,
+              strokeValuation: allStrokeOfATeeValuated,
+              aValuationController: strokesOfATeeController,
+            ),
           ),
           SaveYourRound(
             aTable: aStrokeTable,

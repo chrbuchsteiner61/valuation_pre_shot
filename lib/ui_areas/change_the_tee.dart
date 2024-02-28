@@ -8,7 +8,8 @@ import '../main.dart';
 
 class ChangeTheTee extends StatelessWidget {
   final ATable aTable;
-  const ChangeTheTee({super.key, required this.aTable,});
+  final dynamic aFunction;
+  const ChangeTheTee({super.key, required this.aTable, required this.aFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +25,14 @@ class ChangeTheTee extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            InDecreaseButton(aDirection: 'back', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee,),
+            InDecreaseButton(aDirection: 'back', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee,aFunction: aFunction),
             StyledText(
               aText: '${context.watch<ChangeTheTeeProvider>().aTee}',
               key: const Key('counterState'),
               aWidth: 36,
               aLignment: 'center',
             ),
-            InDecreaseButton(aDirection: 'forward', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee,),
+            InDecreaseButton(aDirection: 'forward', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee, aFunction: aFunction,),
           ],
         ),
       ]),

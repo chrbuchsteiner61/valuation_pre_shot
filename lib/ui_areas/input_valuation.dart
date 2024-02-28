@@ -10,24 +10,23 @@ class InputValuation extends StatelessWidget {
   final int numberOfStrokes;
   final int tee;
   final ARow strokeValuation;
+  final List<TextEditingController> aValuationController;
 
   InputValuation(
       {super.key,
       required this.numberOfStrokes,
       required this.tee,
-      required this.strokeValuation});
+      required this.strokeValuation,
+      required this.aValuationController,
+      });
 
   List<Widget> strokeTextFields = [];
-  List<TextEditingController> aValuationController = [];
+
 
   List<Widget> _getStrokes(
     int numberOfStrokes,
     ARow aValuationOfStrokes,
   ) {
-    for (int i = 0; i < numberOfStrokes; i++) {
-      aValuationController
-          .add(TextEditingController(text: aValuationOfStrokes.valueRow[i]));
-    }
     for (int i = 0; i < numberOfStrokes; i++) {
       strokeTextFields.addAll([
         SingleValuation(
@@ -35,15 +34,6 @@ class InputValuation extends StatelessWidget {
       ]);
     }
     return strokeTextFields;
-  }
-
-  void getStrokesOfAController(List<TextEditingController> controllers) {
-    int i = 0;
-    for (var controller in controllers) {
-      strokeValuation.valueRow[i] = controller.text;
-      i += 1;
-    }
-    logger.d(strokeValuation.toString());
   }
 
   @override

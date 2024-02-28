@@ -19,7 +19,7 @@ class PdfStrokePage extends StatelessWidget {
   final ATable strokeTable;
   final String aRoutineElement;
 
-  PdfStrokePage(
+  const PdfStrokePage(
       {super.key, required this.strokeTable, required this.aRoutineElement});
 
   @override

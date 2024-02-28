@@ -10,6 +10,7 @@ class InDecreaseButton extends StatelessWidget {
   final int lowestTee = 1;
   final int highestTee = 18;
   final ATable aTable;
+  final dynamic aFunction;
 
   final int previousTee;
   int newTee = 0;
@@ -18,7 +19,8 @@ class InDecreaseButton extends StatelessWidget {
       {super.key,
       required this.aDirection,
       required this.aTable,
-      required this.previousTee});
+      required this.previousTee,
+      required this.aFunction});
 
   Icon anIcon = const Icon(Icons.arrow_forward);
   int addValue = 0;
@@ -58,19 +60,27 @@ class InDecreaseButton extends StatelessWidget {
                 .read<ChangeTheTeeProvider>()
                 .inDecreaseANumber(addValue, lowestTee, highestTee);
 
-            // get a row with tee
+            context.read<ChangeStrokeValuationOfATee>().changeStrokesOfATee();
+
+            // get a row with tee from widget
             // for Test
             logger.d(previousTee);
             logger.d(newTee);
-            ARow testRow = ARow(10, 'Test');
-            testRow.numberOfRow = previousTee;
-            aTable.updateValuesOfARow(testRow);
-            //put a row from table to new tee
-            testRow.getStrokesFromTable(aTable, newTee);
+            ARow outOfStrokesOfTee = ARow(10, ' ');
+            logger
+                .d('Inhalt des TextController Array ${aFunction().toString()}');
+
+            outOfStrokesOfTee.valueRow = aFunction();
+            outOfStrokesOfTee.numberOfRow = previousTee;
+
+            // update runs, change name of parameter testRow
+            aTable.updateValuesOfARow(outOfStrokesOfTee);
             // testing
             logger.d(aTable.values.toString());
-            logger.d(testRow.valueRow);
-            logger.d(testRow.numberOfRow);
+            //put a row from table to new tee
+            // put the row in widget
+            outOfStrokesOfTee.getStrokesFromTable(aTable, newTee);
+            logger.d(outOfStrokesOfTee.valueRow.toString());
           }),
     );
   }

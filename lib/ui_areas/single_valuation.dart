@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/methods/numerical_formatter.dart';
-
-import '../main.dart';
 
 class SingleValuation extends StatelessWidget {
   String strokeNumber = '1';
