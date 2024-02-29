@@ -23,20 +23,22 @@ void main() {
   );
 }
 
+const numberOfStrokes = 10;
+const numberOfTees = 18;
+
 class ARow {
   int numberOfRow = 0;
   List<String> valueRow = [];
 
-  ARow(int numberOfElements, String initialValue) {
+  ARow(String initialValue) {
     valueRow = List<String>.generate(
-        numberOfElements + 1, (int index) => initialValue,
+        numberOfStrokes, (int index) => initialValue,
         growable: false);
-    valueRow[0] = (numberOfElements + 1).toString();
   }
 
   void getStrokesFromTable(ATable aTable, int theNewTee) {
     numberOfRow = theNewTee;
-    for (int i = 1; i < int.parse(valueRow[0]); i++) {
+    for (int i = 0; i < numberOfStrokes; i++) {
       valueRow[i] = aTable.values[theNewTee][i];
     }
   }
@@ -45,28 +47,29 @@ class ARow {
 class ATable {
   List<List<String>> values = [];
 
-  ATable(int numberOfRows, int numberOfColumns, String initialValue) {
+  ATable( String initialValue) {
+
     values = List<List<String>>.generate(
-        numberOfRows,
+        numberOfTees+1,
         (index) => List<String>.generate(
-            numberOfColumns, (int index) => initialValue,
+            numberOfStrokes+1, (int index) => initialValue,
             growable: false),
         growable: false);
   }
 
   void updateValuesOfARow(ARow aRow) {
     int theTee = aRow.numberOfRow;
-
-    for (int i = 1; i < int.parse(aRow.valueRow[0]); i++) {
+    logger.d(aRow.valueRow.length);
+    for (int i = 0; i < numberOfStrokes; i++) {
       logger.d(aRow.valueRow[i]);
-      values[theTee][i] = aRow.valueRow[i];
+      values[theTee][i+1] = aRow.valueRow[i];
     }
   }
 }
 
 class ChangeStrokeValuationOfATee with ChangeNotifier {
-  // 10 columns for strokes, 1 additional for number of strokes
-  ARow _strokesOfATee = ARow(10, '0');
+  // 10 columns for strokes
+  ARow _strokesOfATee = ARow('0');
 
   ARow get strokesOfATee => _strokesOfATee;
 
@@ -78,7 +81,7 @@ class ChangeStrokeValuationOfATee with ChangeNotifier {
 class ChangeStrokeTable with ChangeNotifier {
   // table of strokes per round
   // 18 tees, 10 strokes plus overhead and a column on the side
-  ATable _aTable = ATable(19, 11, '0');
+  ATable _aTable = ATable('0');
 
   ATable get strokesTable => _aTable;
 
@@ -104,9 +107,6 @@ class ChangeTheTeeProvider with ChangeNotifier {
     if (_aNumber < minValue) {
       _aNumber = minValue;
     }
-
-    // save valuations from input_valuation in stroketable
-    // write values in input_valuation for new tee
 
     notifyListeners();
   }
@@ -151,15 +151,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String version = '0.988 / ${DateTime.now().toString()}';
+  String version = '0.988 / 29.02.2024';
   int tee = 1;
   final int numberOfTees = 18;
   final int numberOfStrokes = 10;
 
   // initialize with 18 + 1 tees and 10 +1 strokes
-  ATable aStrokeTable = ATable(19, 11, '0');
+  ATable aStrokeTable = ATable('0');
 
-  ARow allStrokeOfATeeValuated = ARow(10, '');
+  ARow allStrokeOfATeeValuated = ARow('');
 
   String aValuation = '';
 
@@ -200,10 +200,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<String> _getValuationsOutOfATeeController() {
-    List<String> valuations = ['10'];
+    List<String> valuations = [];
+    logger.d('Anzahl Controller in strokesOfATee... ${strokesOfATeeController.length}');
     for (TextEditingController aController in strokesOfATeeController) {
       valuations.add(aController.text);
     }
+    logger.d(valuations.length);
     return valuations;
   }
 

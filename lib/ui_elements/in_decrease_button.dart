@@ -63,24 +63,23 @@ class InDecreaseButton extends StatelessWidget {
             context.read<ChangeStrokeValuationOfATee>().changeStrokesOfATee();
 
             // get a row with tee from widget
-            // for Test
             logger.d(previousTee);
             logger.d(newTee);
-            ARow outOfStrokesOfTee = ARow(10, ' ');
+            ARow outOfStrokesOfTee = ARow(' ');
+
             logger
                 .d('Inhalt des TextController Array ${aFunction().toString()}');
 
             outOfStrokesOfTee.valueRow = aFunction();
             outOfStrokesOfTee.numberOfRow = previousTee;
 
-            // update runs, change name of parameter testRow
             aTable.updateValuesOfARow(outOfStrokesOfTee);
             // testing
             logger.d(aTable.values.toString());
             //put a row from table to new tee
             // put the row in widget
             outOfStrokesOfTee.getStrokesFromTable(aTable, newTee);
-            logger.d(outOfStrokesOfTee.valueRow.toString());
+            logger.d('Neue Werte ${outOfStrokesOfTee.valueRow.toString()}');
           }),
     );
   }
