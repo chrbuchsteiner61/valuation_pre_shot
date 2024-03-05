@@ -6,14 +6,13 @@ import '../main.dart';
 var logger = Logger();
 
 class InDecreaseButton extends StatelessWidget {
-  String aDirection;
+  final String aDirection;
   final int lowestTee = 1;
   final int highestTee = 18;
   final ATable aTable;
   final dynamic aFunction;
 
   final int previousTee;
-  int newTee = 0;
 
   InDecreaseButton(
       {super.key,
@@ -22,6 +21,7 @@ class InDecreaseButton extends StatelessWidget {
       required this.previousTee,
       required this.aFunction});
 
+  int newTee = 0;
   Icon anIcon = const Icon(Icons.arrow_forward);
   int addValue = 0;
 
@@ -56,13 +56,11 @@ class InDecreaseButton extends StatelessWidget {
           color: Colors.black,
           tooltip: 'back or forward',
           onPressed: () {
-            context
-                .read<ChangeTheTeeProvider>()
-                .inDecreaseANumber(addValue, lowestTee, highestTee);
-
-            context.read<ChangeStrokeValuationOfATee>().changeStrokesOfATee();
+            Provider.of<TeeProvider>(context, listen: false).inDecreaseANumber(addValue, lowestTee, highestTee);
+           // context.read<ChangeStrokeValuationOfATee>().changeStrokesOfATee();
 
             // get a row with tee from widget
+            logger.d('Aus dem Provider ${context.read<TeeProvider>().aTee}');
             logger.d(previousTee);
             logger.d(newTee);
             ARow outOfStrokesOfTee = ARow(' ');

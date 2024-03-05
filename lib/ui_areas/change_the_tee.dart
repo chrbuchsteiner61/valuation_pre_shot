@@ -25,14 +25,14 @@ class ChangeTheTee extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            InDecreaseButton(aDirection: 'back', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee,aFunction: aFunction),
+            InDecreaseButton(aDirection: 'back', aTable: aTable, previousTee: context.watch<TeeProvider>().aTee,aFunction: aFunction),
             StyledText(
-              aText: '${context.watch<ChangeTheTeeProvider>().aTee}',
+              aText: '${context.watch<TeeProvider>().aTee}',
               key: const Key('counterState'),
               aWidth: 36,
               aLignment: 'center',
             ),
-            InDecreaseButton(aDirection: 'forward', aTable: aTable, previousTee: context.watch<ChangeTheTeeProvider>().aTee, aFunction: aFunction,),
+            InDecreaseButton(aDirection: 'forward', aTable: aTable, previousTee: context.watch<TeeProvider>().aTee, aFunction: aFunction,),
           ],
         ),
       ]),

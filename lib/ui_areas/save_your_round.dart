@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/methods/pdf_stroke_page.dart';
@@ -10,16 +11,17 @@ var logger = Logger();
 class SaveYourRound extends StatelessWidget {
   final ATable aTable;
   final dynamic aFunction;
+  final dynamic aControllerFunction;
 
   const SaveYourRound({
     super.key,
     required this.aTable,
     required this.aFunction,
+    required this.aControllerFunction,
   });
 
   @override
   Widget build(BuildContext context) {
-
     StyledText saveRoundText = StyledText(
       aText: 'Runde abschliessen ',
       aWidth: 200,
@@ -30,6 +32,8 @@ class SaveYourRound extends StatelessWidget {
       color: Colors.white,
       width: 30,
     );
+
+    int currentTee = 0;
 
     return Row(
       children: <Widget>[
@@ -42,15 +46,22 @@ class SaveYourRound extends StatelessWidget {
         aSpaceBetween,
         FloatingActionButton(
           onPressed: () async {
+            currentTee = context.read<TeeProvider>().aTee;
+
             String aRoutine = aFunction();
+            ARow outOfStrokesOfTee = ARow(' ');
+            outOfStrokesOfTee.valueRow = aControllerFunction();
+              logger.d(outOfStrokesOfTee.valueRow.toString());
+              logger.d('das importierte Tee: $currentTee');
+            outOfStrokesOfTee.numberOfRow = currentTee;
+            aTable.updateValuesOfARow(outOfStrokesOfTee);
 
             Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (context) => PdfStrokePage(
                         strokeTable: aTable,
                         aRoutineElement: aRoutine,
-                      )
-              ),
+                      )),
             ); // generate a pdf
           },
           tooltip: 'close a round and generate a pdf',

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ColoredContainer extends StatelessWidget {
-  Widget aWidget;
+  final Widget aWidget;
 
-  ColoredContainer({super.key, required this.aWidget});
+  const ColoredContainer({super.key, required this.aWidget});
 
   //Color backgroundColor = Colors.green;
 

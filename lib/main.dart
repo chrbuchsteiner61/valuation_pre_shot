@@ -1,4 +1,3 @@
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -14,9 +13,9 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ChangeTheTeeProvider()),
-        ChangeNotifierProvider(create: (_) => ChangeStrokeTable()),
-        ChangeNotifierProvider(create: (_) => ChangeStrokeValuationOfATee())
+        ChangeNotifierProvider(create: (_) => TeeProvider()),
+        ChangeNotifierProvider(create: (_) => StrokeTableProvider()),
+        ChangeNotifierProvider(create: (_) => ValuationArrayOfATeeProvider())
       ],
       child: const MyApp(),
     ),
@@ -47,12 +46,11 @@ class ARow {
 class ATable {
   List<List<String>> values = [];
 
-  ATable( String initialValue) {
-
+  ATable(String initialValue) {
     values = List<List<String>>.generate(
-        numberOfTees+1,
+        numberOfTees + 1,
         (index) => List<String>.generate(
-            numberOfStrokes+1, (int index) => initialValue,
+            numberOfStrokes + 1, (int index) => initialValue,
             growable: false),
         growable: false);
   }
@@ -61,16 +59,15 @@ class ATable {
     int theTee = aRow.numberOfRow;
     logger.d(aRow.valueRow.length);
     for (int i = 0; i < numberOfStrokes; i++) {
-      logger.d(aRow.valueRow[i]);
-      values[theTee][i+1] = aRow.valueRow[i];
+      //logger.d(aRow.valueRow[i]);
+      values[theTee][i + 1] = aRow.valueRow[i];
     }
   }
 }
 
-class ChangeStrokeValuationOfATee with ChangeNotifier {
+class ValuationArrayOfATeeProvider with ChangeNotifier {
   // 10 columns for strokes
   ARow _strokesOfATee = ARow('0');
-
   ARow get strokesOfATee => _strokesOfATee;
 
   void changeStrokesOfATee() {
@@ -78,7 +75,7 @@ class ChangeStrokeValuationOfATee with ChangeNotifier {
   }
 }
 
-class ChangeStrokeTable with ChangeNotifier {
+class StrokeTableProvider with ChangeNotifier {
   // table of strokes per round
   // 18 tees, 10 strokes plus overhead and a column on the side
   ATable _aTable = ATable('0');
@@ -92,20 +89,18 @@ class ChangeStrokeTable with ChangeNotifier {
   }
 }
 
-class ChangeTheTeeProvider with ChangeNotifier {
-  int _aNumber = 1;
-
-  int get aTee => _aNumber;
+class TeeProvider with ChangeNotifier {
+  int _aTee = 1;
+  int get aTee => _aTee;
 
   void inDecreaseANumber(int anAddedValue, int minValue, int maxValue) {
-
     // getStrokesOfAController(inputTeeController);
-    _aNumber += anAddedValue;
-    if (_aNumber > maxValue) {
-      _aNumber = maxValue;
+    _aTee += anAddedValue;
+    if (_aTee > maxValue) {
+      _aTee = maxValue;
     }
-    if (_aNumber < minValue) {
-      _aNumber = minValue;
+    if (_aTee < minValue) {
+      _aTee = minValue;
     }
 
     notifyListeners();
@@ -151,7 +146,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String version = '0.988 / 29.02.2024';
+  final String version = '0.991 / 05.03.2024';
   int tee = 1;
   final int numberOfTees = 18;
   final int numberOfStrokes = 10;
@@ -201,7 +196,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> _getValuationsOutOfATeeController() {
     List<String> valuations = [];
-    logger.d('Anzahl Controller in strokesOfATee... ${strokesOfATeeController.length}');
+    logger.d(
+        'Anzahl Controller in strokesOfATee... ${strokesOfATeeController.length}');
     for (TextEditingController aController in strokesOfATeeController) {
       valuations.add(aController.text);
     }
@@ -225,6 +221,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //Provider.of<TeeProvider>(context, listen: false);
+
     aStrokeTable = _addjustStrokeTable(aStrokeTable);
     logger.d(aStrokeTable.values.toString());
 
@@ -237,34 +235,40 @@ class _MyHomePageState extends State<MyHomePage> {
       strokesOfATeeController.add(TextEditingController(text: ''));
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          InputYourRoutineElement(
-            aController: aRoutineInputController,
-          ),
-          ChangeTheTee(aTable: aStrokeTable, aFunction: _getValuationsOutOfATeeController),
-          Center(
-            child: InputValuation(
-              numberOfStrokes: numberOfStrokes,
-              tee: tee,
-              strokeValuation: allStrokeOfATeeValuated,
-              aValuationController: strokesOfATeeController,
+    return Consumer<TeeProvider>(builder: (context, teeProvider, child) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(widget.title),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            InputYourRoutineElement(
+              aController: aRoutineInputController,
             ),
-          ),
-          SaveYourRound(
-            aTable: aStrokeTable,
-            aFunction: _getTextOutOfARoutineInputController,
-          )
-        ],
-      ),
-      bottomSheet:
-          bottomText, // This trailing comma makes auto-formatting nicer for build methods.
-    );
+            ChangeTheTee(
+                aTable: aStrokeTable,
+                aFunction: _getValuationsOutOfATeeController),
+            Center(
+              child: InputValuation(
+                numberOfStrokes: numberOfStrokes,
+                tee: tee,
+                strokeValuation: allStrokeOfATeeValuated,
+                aValuationController: strokesOfATeeController,
+              ),
+            ),
+            SaveYourRound(
+              aTable: aStrokeTable,
+              aFunction: _getTextOutOfARoutineInputController,
+              aControllerFunction: _getValuationsOutOfATeeController,
+              //currentTee: tee,
+            )
+          ],
+        ),
+        bottomSheet:
+            bottomText, // This trailing comma makes auto-formatting nicer for build methods.
+      );
+    });
   }
 }

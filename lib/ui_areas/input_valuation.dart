@@ -4,8 +4,6 @@ import 'package:valuation_pre_shot/ui_areas/single_valuation.dart';
 
 import '../main.dart';
 
-// import '../main.dart';
-
 class InputValuation extends StatelessWidget {
   final int numberOfStrokes;
   final int tee;
@@ -21,7 +19,6 @@ class InputValuation extends StatelessWidget {
       });
 
   List<Widget> strokeTextFields = [];
-
 
   List<Widget> _getStrokes(
     int numberOfStrokes,

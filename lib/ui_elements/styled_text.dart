@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StyledText extends StatelessWidget {
-  String aText;
-  double aWidth;
-  String aLignment;
+  final String aText;
+  final double aWidth;
+  final String aLignment;
   TextAlign theAlignment = TextAlign.left;
 
   StyledText(
