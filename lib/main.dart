@@ -14,8 +14,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TeeProvider()),
-        ChangeNotifierProvider(create: (_) => StrokeTableProvider()),
-        ChangeNotifierProvider(create: (_) => ValuationArrayOfATeeProvider())
+        ChangeNotifierProvider(create: (_) => ValuationOfStrokesArrayProvider())
       ],
       child: const MyApp(),
     ),
@@ -24,67 +23,19 @@ void main() {
 
 const numberOfStrokes = 10;
 const numberOfTees = 18;
+const initialValue = '';
 
-class ARow {
-  int numberOfRow = 0;
-  List<String> valueRow = [];
+List<String> allStrokes = List<String>.generate(
+    numberOfStrokes * numberOfTees, (int index) => initialValue,
+    growable: false);
 
-  ARow(String initialValue) {
-    valueRow = List<String>.generate(
-        numberOfStrokes, (int index) => initialValue,
-        growable: false);
-  }
-
-  void getStrokesFromTable(ATable aTable, int theNewTee) {
-    numberOfRow = theNewTee;
-    for (int i = 0; i < numberOfStrokes; i++) {
-      valueRow[i] = aTable.values[theNewTee][i];
-    }
-  }
-}
-
-class ATable {
-  List<List<String>> values = [];
-
-  ATable(String initialValue) {
-    values = List<List<String>>.generate(
-        numberOfTees + 1,
-        (index) => List<String>.generate(
-            numberOfStrokes + 1, (int index) => initialValue,
-            growable: false),
-        growable: false);
-  }
-
-  void updateValuesOfARow(ARow aRow) {
-    int theTee = aRow.numberOfRow;
-    logger.d(aRow.valueRow.length);
-    for (int i = 0; i < numberOfStrokes; i++) {
-      //logger.d(aRow.valueRow[i]);
-      values[theTee][i + 1] = aRow.valueRow[i];
-    }
-  }
-}
-
-class ValuationArrayOfATeeProvider with ChangeNotifier {
-  // 10 columns for strokes
-  ARow _strokesOfATee = ARow('0');
-  ARow get strokesOfATee => _strokesOfATee;
+class ValuationOfStrokesArrayProvider with ChangeNotifier {
+  List<String> _strokesOfATee = List<String>.generate(
+      numberOfStrokes * numberOfTees, (int index) => initialValue,
+      growable: false);
+  List<String> get strokesOfATee => _strokesOfATee;
 
   void changeStrokesOfATee() {
-    notifyListeners();
-  }
-}
-
-class StrokeTableProvider with ChangeNotifier {
-  // table of strokes per round
-  // 18 tees, 10 strokes plus overhead and a column on the side
-  ATable _aTable = ATable('0');
-
-  ATable get strokesTable => _aTable;
-
-  void changeTable() {
-    // some bimbam
-
     notifyListeners();
   }
 }
@@ -102,7 +53,6 @@ class TeeProvider with ChangeNotifier {
     if (_aTee < minValue) {
       _aTee = minValue;
     }
-
     notifyListeners();
   }
 }
@@ -146,21 +96,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String version = '0.991 / 05.03.2024';
+  final String version = '1.00 / 07.03.2024';
   int tee = 1;
-  final int numberOfTees = 18;
-  final int numberOfStrokes = 10;
-
-  // initialize with 18 + 1 tees and 10 +1 strokes
-  ATable aStrokeTable = ATable('0');
-
-  ARow allStrokeOfATeeValuated = ARow('');
+  // final int numberOfTees = 18;
+//  final int numberOfStrokes = 10;
 
   String aValuation = '';
 
   final aStrokeController = TextEditingController();
 
-  final List<TextEditingController> strokesOfATeeController = [];
+  final List<TextEditingController> strokesController =
+      List<TextEditingController>.generate(
+          numberOfTees * numberOfStrokes, (index) => TextEditingController());
 
   String selectedRoutine = 'an initial routine value';
 
@@ -170,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     aRoutineInputController.addListener(_getTextOutOfARoutineInputController);
-    for (TextEditingController aController in strokesOfATeeController) {
+    for (TextEditingController aController in strokesController) {
       aController.addListener(_getTextOutOfAStrokeController);
     }
   }
@@ -178,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() {
     aRoutineInputController.dispose();
-    for (TextEditingController aController in strokesOfATeeController) {
+    for (TextEditingController aController in strokesController) {
       aController.dispose();
     }
     super.dispose();
@@ -194,46 +141,25 @@ class _MyHomePageState extends State<MyHomePage> {
     return aValuation;
   }
 
-  List<String> _getValuationsOutOfATeeController() {
+  List<String> getAllValuationsFromController() {
     List<String> valuations = [];
-    logger.d(
-        'Anzahl Controller in strokesOfATee... ${strokesOfATeeController.length}');
-    for (TextEditingController aController in strokesOfATeeController) {
+    logger
+        .d('Anzahl Controller in strokesOfATee... ${strokesController.length}');
+    for (TextEditingController aController in strokesController) {
       valuations.add(aController.text);
     }
     logger.d(valuations.length);
     return valuations;
   }
 
-  ATable _addjustStrokeTable(ATable aTable) {
-    aTable.values[0][0] = 'Bahn / Schlag';
-
-    for (int i = 1; i < 11; i++) {
-      aTable.values[0][i] = i.toString();
-    }
-
-    for (int j = 1; j < 19; j++) {
-      aTable.values[j][0] = j.toString();
-    }
-
-    return aTable;
-  }
-
   @override
   Widget build(BuildContext context) {
     //Provider.of<TeeProvider>(context, listen: false);
-
-    aStrokeTable = _addjustStrokeTable(aStrokeTable);
-    logger.d(aStrokeTable.values.toString());
 
     Text bottomText = Text(
       version,
       style: Theme.of(context).textTheme.bodyLarge,
     );
-
-    for (int i = 0; i < 10; i++) {
-      strokesOfATeeController.add(TextEditingController(text: ''));
-    }
 
     return Consumer<TeeProvider>(builder: (context, teeProvider, child) {
       return Scaffold(
@@ -248,20 +174,16 @@ class _MyHomePageState extends State<MyHomePage> {
               aController: aRoutineInputController,
             ),
             ChangeTheTee(
-                aTable: aStrokeTable,
-                aFunction: _getValuationsOutOfATeeController),
-            Center(
-              child: InputValuation(
-                numberOfStrokes: numberOfStrokes,
-                tee: tee,
-                strokeValuation: allStrokeOfATeeValuated,
-                aValuationController: strokesOfATeeController,
-              ),
+                // aTable: aStrokeTable,
+                aFunction: getAllValuationsFromController),
+            InputValuation(
+             // tee: tee,
+              strokeValuation: allStrokes,
+              aValuationController: strokesController,
             ),
             SaveYourRound(
-              aTable: aStrokeTable,
               aFunction: _getTextOutOfARoutineInputController,
-              aControllerFunction: _getValuationsOutOfATeeController,
+              aControllerFunction: getAllValuationsFromController,
               //currentTee: tee,
             )
           ],

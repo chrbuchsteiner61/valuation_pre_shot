@@ -9,7 +9,7 @@ class InDecreaseButton extends StatelessWidget {
   final String aDirection;
   final int lowestTee = 1;
   final int highestTee = 18;
-  final ATable aTable;
+  // final ATable aTable;
   final dynamic aFunction;
 
   final int previousTee;
@@ -17,7 +17,7 @@ class InDecreaseButton extends StatelessWidget {
   InDecreaseButton(
       {super.key,
       required this.aDirection,
-      required this.aTable,
+      //  required this.aTable,
       required this.previousTee,
       required this.aFunction});
 
@@ -56,28 +56,17 @@ class InDecreaseButton extends StatelessWidget {
           color: Colors.black,
           tooltip: 'back or forward',
           onPressed: () {
-            Provider.of<TeeProvider>(context, listen: false).inDecreaseANumber(addValue, lowestTee, highestTee);
-           // context.read<ChangeStrokeValuationOfATee>().changeStrokesOfATee();
+            Provider.of<TeeProvider>(context, listen: false)
+                .inDecreaseANumber(addValue, lowestTee, highestTee);
+            // context.read<ChangeStrokeValuationOfATee>().changeStrokesOfATee();
 
             // get a row with tee from widget
-            logger.d('Aus dem Provider ${context.read<TeeProvider>().aTee}');
-            logger.d(previousTee);
-            logger.d(newTee);
-            ARow outOfStrokesOfTee = ARow(' ');
+           // logger.d('Aus dem Provider ${context.read<TeeProvider>().aTee}');
+            logger.d('Previous tee: ${previousTee}');
+            logger.d('New tee: ${newTee}');
 
             logger
                 .d('Inhalt des TextController Array ${aFunction().toString()}');
-
-            outOfStrokesOfTee.valueRow = aFunction();
-            outOfStrokesOfTee.numberOfRow = previousTee;
-
-            aTable.updateValuesOfARow(outOfStrokesOfTee);
-            // testing
-            logger.d(aTable.values.toString());
-            //put a row from table to new tee
-            // put the row in widget
-            outOfStrokesOfTee.getStrokesFromTable(aTable, newTee);
-            logger.d('Neue Werte ${outOfStrokesOfTee.valueRow.toString()}');
           }),
     );
   }

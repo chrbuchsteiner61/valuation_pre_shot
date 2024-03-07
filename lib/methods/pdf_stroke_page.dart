@@ -16,22 +16,22 @@ class PdfStrokePage extends StatelessWidget {
   final String title = 'Post Shot Routine: Bewertung';
 
   //final dynamic aFunction;
-  final ATable strokeTable;
+  final List<String> allStrokes;
   final String aRoutineElement;
 
   const PdfStrokePage(
-      {super.key, required this.strokeTable, required this.aRoutineElement});
+      {super.key, required this.allStrokes, required this.aRoutineElement});
 
   @override
   Widget build(BuildContext context) {
-    logger.d(strokeTable.values.toString());
+    // logger.d(strokeTable.values.toString());
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: Text(title)),
         body: PdfPreview(
-          build: (format) => _generatePdf(strokeTable, aRoutineElement),
+          build: (format) => _generatePdf(allStrokes, aRoutineElement),
         ),
       ),
     );
@@ -46,7 +46,34 @@ class PdfStrokePage extends StatelessWidget {
   }
 
   Future<Uint8List> _generatePdf(
-      ATable aStrokeTable, String routineElement) async {
+      List<String> allStrokes, String routineElement) async {
+
+    int theTee_netto = 0;
+    int theStroke_netto = 0;
+
+    List<List<String>> theStrokeTable = List<List<String>>.generate(
+        numberOfTees + 1,
+        (index) => List<String>.generate(
+            numberOfStrokes + 1, (int index) => initialValue,
+            growable: false),
+        growable: false);
+
+    theStrokeTable[0][0] = 'Bahn / Schlag';
+
+    for (int i = 1; i < 11; i++) {
+      theStrokeTable[0][i] = i.toString();
+    }
+
+    for (int j = 1; j < 19; j++) {
+      theStrokeTable[j][0] = j.toString();
+    }
+
+    for (int i = 0; i < allStrokes.length; i++) {
+      theTee_netto = i ~/ numberOfStrokes;
+      theStroke_netto = i % numberOfStrokes;
+      //logger.d(aRow.valueRow[i]);
+      theStrokeTable[theTee_netto + 1][theStroke_netto + 1] = allStrokes[i];
+    }
     // text formats
     pw.TextStyle formatH2 = const pw.TextStyle(
       fontSize: 16,
@@ -81,7 +108,7 @@ class PdfStrokePage extends StatelessWidget {
                 ),
                 pw.SizedBox(width: 200, height: 40),
                 pw.TableHelper.fromTextArray(
-                  data: aStrokeTable.values,
+                  data: theStrokeTable,
                   cellAlignment: pw.Alignment.topRight,
                   cellStyle: formatP,
                 ),
