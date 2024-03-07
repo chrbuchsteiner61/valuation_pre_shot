@@ -12,8 +12,10 @@ class ColoredContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       child: Container(
-        //color: backgroundColor,
-        color: Theme.of(context).colorScheme.primary,
+        decoration:
+            BoxDecoration(borderRadius: const BorderRadius.all(Radius.circular(4)),
+              color: Theme.of(context).colorScheme.primary,),
+
         height: 50,
         child: aWidget,
       ),

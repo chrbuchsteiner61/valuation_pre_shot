@@ -24,6 +24,12 @@ class SingleValuation extends StatelessWidget {
 
   SizedBox aSpace = const SizedBox(width: 5);
 
+  String convertStrokeNumberToTee(String strokeNumber) {
+    int strokeOnATee = int.parse(strokeNumber) % numberOfStrokes;
+    if (strokeOnATee == 0) { strokeOnATee = 10;}
+    return strokeOnATee.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Visibility(
@@ -40,7 +46,7 @@ class SingleValuation extends StatelessWidget {
               children: <Widget>[
                 textStroke,
                 StyledText(
-                  aText: (int.parse(strokeNumber) % numberOfStrokes).toString(),
+                  aText: convertStrokeNumberToTee(strokeNumber),
                   aWidth: 28,
                   aLignment: 'right',
                 ),

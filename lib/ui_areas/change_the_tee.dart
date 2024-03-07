@@ -7,12 +7,8 @@ import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import '../main.dart';
 
 class ChangeTheTee extends StatelessWidget {
-  // final ATable aTable;
   final dynamic aFunction;
-  const ChangeTheTee(
-      {super.key,
-      //required this.aTable,
-      required this.aFunction});
+  const ChangeTheTee({super.key, required this.aFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +37,6 @@ class ChangeTheTee extends StatelessWidget {
             ),
             InDecreaseButton(
               aDirection: 'forward',
-              //aTable: aTable,
               previousTee: context.watch<TeeProvider>().aTee,
               aFunction: aFunction,
             ),

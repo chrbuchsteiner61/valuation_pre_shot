@@ -14,7 +14,6 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TeeProvider()),
-        ChangeNotifierProvider(create: (_) => ValuationOfStrokesArrayProvider())
       ],
       child: const MyApp(),
     ),
@@ -29,23 +28,11 @@ List<String> allStrokes = List<String>.generate(
     numberOfStrokes * numberOfTees, (int index) => initialValue,
     growable: false);
 
-class ValuationOfStrokesArrayProvider with ChangeNotifier {
-  List<String> _strokesOfATee = List<String>.generate(
-      numberOfStrokes * numberOfTees, (int index) => initialValue,
-      growable: false);
-  List<String> get strokesOfATee => _strokesOfATee;
-
-  void changeStrokesOfATee() {
-    notifyListeners();
-  }
-}
-
 class TeeProvider with ChangeNotifier {
   int _aTee = 1;
   int get aTee => _aTee;
 
   void inDecreaseANumber(int anAddedValue, int minValue, int maxValue) {
-    // getStrokesOfAController(inputTeeController);
     _aTee += anAddedValue;
     if (_aTee > maxValue) {
       _aTee = maxValue;
@@ -60,7 +47,6 @@ class TeeProvider with ChangeNotifier {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -96,10 +82,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String version = '1.00 / 07.03.2024';
+  final String version = '1.01 / 07.03.2024';
   int tee = 1;
-  // final int numberOfTees = 18;
-//  final int numberOfStrokes = 10;
 
   String aValuation = '';
 
@@ -109,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
       List<TextEditingController>.generate(
           numberOfTees * numberOfStrokes, (index) => TextEditingController());
 
-  String selectedRoutine = 'an initial routine value';
+  String selectedRoutine = 'initial routine';
 
   final aRoutineInputController = TextEditingController();
 
@@ -141,21 +125,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return aValuation;
   }
 
-  List<String> getAllValuationsFromController() {
+  List<String> _getAllValuationsFromController() {
     List<String> valuations = [];
-    logger
-        .d('Anzahl Controller in strokesOfATee... ${strokesController.length}');
+
     for (TextEditingController aController in strokesController) {
       valuations.add(aController.text);
     }
-    logger.d(valuations.length);
+
     return valuations;
   }
 
   @override
   Widget build(BuildContext context) {
-    //Provider.of<TeeProvider>(context, listen: false);
-
     Text bottomText = Text(
       version,
       style: Theme.of(context).textTheme.bodyLarge,
@@ -173,18 +154,14 @@ class _MyHomePageState extends State<MyHomePage> {
             InputYourRoutineElement(
               aController: aRoutineInputController,
             ),
-            ChangeTheTee(
-                // aTable: aStrokeTable,
-                aFunction: getAllValuationsFromController),
+            ChangeTheTee(aFunction: _getAllValuationsFromController),
             InputValuation(
-             // tee: tee,
               strokeValuation: allStrokes,
               aValuationController: strokesController,
             ),
             SaveYourRound(
               aFunction: _getTextOutOfARoutineInputController,
-              aControllerFunction: getAllValuationsFromController,
-              //currentTee: tee,
+              aControllerFunction: _getAllValuationsFromController,
             )
           ],
         ),

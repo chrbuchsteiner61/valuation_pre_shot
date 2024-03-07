@@ -6,13 +6,11 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 
 class InputValuation extends StatelessWidget {
-  // final int tee;
   final List<String> strokeValuation;
   final List<TextEditingController> aValuationController;
 
   InputValuation({
     super.key,
-    //  required this.tee,
     required this.strokeValuation,
     required this.aValuationController,
   });
@@ -26,7 +24,7 @@ class InputValuation extends StatelessWidget {
     List<Widget> inputTextFields = [];
     bool elementVisible = true;
     int numberOfInputs = numberOfStrokes * numberOfTees;
-    logger.d('Veraendert? ${aTee}');
+
     for (int i = 0; i < numberOfInputs; i++) {
       if (i >= ((aTee -1) * numberOfStrokes) && (i < (aTee * numberOfStrokes))) {
         elementVisible = true;
@@ -50,7 +48,6 @@ class InputValuation extends StatelessWidget {
       child: Column(
           children:
               getStrokes(context.watch<TeeProvider>().aTee, strokeValuation)),
-      // ],
     );
   }
 }

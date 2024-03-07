@@ -14,8 +14,6 @@ var logger = Logger();
 
 class PdfStrokePage extends StatelessWidget {
   final String title = 'Post Shot Routine: Bewertung';
-
-  //final dynamic aFunction;
   final List<String> allStrokes;
   final String aRoutineElement;
 
@@ -47,9 +45,8 @@ class PdfStrokePage extends StatelessWidget {
 
   Future<Uint8List> _generatePdf(
       List<String> allStrokes, String routineElement) async {
-
-    int theTee_netto = 0;
-    int theStroke_netto = 0;
+    int theTeeNetto = 0;
+    int theStrokeNetto = 0;
 
     List<List<String>> theStrokeTable = List<List<String>>.generate(
         numberOfTees + 1,
@@ -69,10 +66,10 @@ class PdfStrokePage extends StatelessWidget {
     }
 
     for (int i = 0; i < allStrokes.length; i++) {
-      theTee_netto = i ~/ numberOfStrokes;
-      theStroke_netto = i % numberOfStrokes;
+      theTeeNetto = i ~/ numberOfStrokes;
+      theStrokeNetto = i % numberOfStrokes;
       //logger.d(aRow.valueRow[i]);
-      theStrokeTable[theTee_netto + 1][theStroke_netto + 1] = allStrokes[i];
+      theStrokeTable[theTeeNetto + 1][theStrokeNetto + 1] = allStrokes[i];
     }
     // text formats
     pw.TextStyle formatH2 = const pw.TextStyle(
