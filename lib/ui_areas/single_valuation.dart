@@ -26,7 +26,9 @@ class SingleValuation extends StatelessWidget {
 
   String convertStrokeNumberToTee(String strokeNumber) {
     int strokeOnATee = int.parse(strokeNumber) % numberOfStrokes;
-    if (strokeOnATee == 0) { strokeOnATee = 10;}
+    if (strokeOnATee == 0) {
+      strokeOnATee = 10;
+    }
     return strokeOnATee.toString();
   }
 
@@ -36,10 +38,12 @@ class SingleValuation extends StatelessWidget {
       visible: visibleElement,
       child: Center(
         child: Container(
-          color: Theme.of(context).colorScheme.primary,
           width: 140,
           height: 40,
           margin: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.all(Radius.circular(4))),
           child: Padding(
             padding: const EdgeInsets.all(4),
             child: Row(

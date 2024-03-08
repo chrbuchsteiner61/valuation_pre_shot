@@ -24,12 +24,12 @@ class StyledText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: aWidth,
-        child: Text(
-          aText,
-          style: Theme.of(context).textTheme.bodyMedium,
-          textAlign: theAlignment,
-        ),
+      width: aWidth,
+      child: Text(
+        aText,
+        style: Theme.of(context).textTheme.bodyMedium,
+        textAlign: theAlignment,
+      ),
     );
   }
 }

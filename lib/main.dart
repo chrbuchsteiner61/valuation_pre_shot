@@ -61,6 +61,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Noto',
         useMaterial3: true,
         textTheme: const TextTheme(
+          headlineMedium: TextStyle(
+              fontSize: 16, fontWeight: FontWeight.w800, color: Colors.white),
           bodyMedium: TextStyle(
               fontSize: 15, fontWeight: FontWeight.w800, color: Colors.white),
           bodyLarge: TextStyle(
@@ -82,7 +84,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String version = '1.01 / 07.03.2024';
+  final String version = '1.02 / 08.03.2024';
   int tee = 1;
 
   String aValuation = '';

@@ -29,33 +29,36 @@ class SaveYourRound extends StatelessWidget {
       width: 10,
     );
 
-    return Row(
-      children: <Widget>[
-        aSpaceBetween,
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: saveRoundText,
+    return Row(children: <Widget>[
+      aSpaceBetween,
+      Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
+          color: Theme.of(context).colorScheme.primary,
         ),
-        aSpaceBetween,
-        FloatingActionButton(
-          onPressed: () async {
-            String aRoutine = aFunction();
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                  builder: (context) => PdfStrokePage(
-                        allStrokes: aControllerFunction(),
-                        aRoutineElement: aRoutine,
-                      )),
-            ); // generate a pdf
-          },
-          tooltip: 'close a round and generate a pdf',
-          child: Icon(Icons.save, color: Theme.of(context).colorScheme.primary),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Row(
+          children: <Widget>[
+            saveRoundText,
+            aSpaceBetween,
+            FloatingActionButton(
+              onPressed: () async {
+                String aRoutine = aFunction();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => PdfStrokePage(
+                            allStrokes: aControllerFunction(),
+                            aRoutineElement: aRoutine,
+                          )),
+                ); // generate a pdf
+              },
+              tooltip: 'close a round and generate a pdf',
+              child: Icon(Icons.save,
+                  color: Theme.of(context).colorScheme.primary),
+            ),
+          ],
         ),
-      ],
-    );
+      )
+    ]);
   }
 }
