@@ -22,7 +22,7 @@ class SingleValuation extends StatelessWidget {
     aLignment: 'left',
   );
 
-  SizedBox aSpace = const SizedBox(width: 5);
+  SizedBox aSpace = const SizedBox(width: 12);
 
   String convertStrokeNumberToTee(String strokeNumber) {
     int strokeOnATee = int.parse(strokeNumber) % numberOfStrokes;
@@ -38,7 +38,7 @@ class SingleValuation extends StatelessWidget {
       visible: visibleElement,
       child: Center(
         child: Container(
-          width: 140,
+          width: 150,
           height: 40,
           margin: const EdgeInsets.all(4),
           decoration: BoxDecoration(
@@ -59,8 +59,16 @@ class SingleValuation extends StatelessWidget {
                   width: 38,
                   child: TextField(
                     controller: aController,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
+                    decoration: InputDecoration(
+                 //     border: InputBorder.none,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(3.0),
+                        borderSide: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.fromLTRB(12, 2, 8, 3),
                       filled: true,
                       fillColor: Colors.white,
                     ),

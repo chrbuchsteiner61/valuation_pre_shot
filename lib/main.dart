@@ -84,7 +84,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String version = '1.02 / 08.03.2024';
+  final String version = '1.03 / 11.03.2024';
   int tee = 1;
 
   String aValuation = '';

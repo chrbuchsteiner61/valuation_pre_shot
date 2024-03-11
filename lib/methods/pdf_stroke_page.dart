@@ -4,9 +4,9 @@ import 'package:logger/logger.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
-import 'dart:io';
+//import 'dart:io';
 import 'dart:typed_data';
-import 'package:path_provider/path_provider.dart';
+//import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
 import 'package:valuation_pre_shot/main.dart';
 
@@ -22,7 +22,6 @@ class PdfStrokePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // logger.d(strokeTable.values.toString());
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -35,13 +34,14 @@ class PdfStrokePage extends StatelessWidget {
     );
   }
 
+/**
   Future<void> savePdfFile(String fileName, Uint8List byteList) async {
     final output = await getTemporaryDirectory();
     var filePath = '${output.path}/$fileName';
-    // logger.d(filePath);
     final file = File(filePath);
     await file.writeAsBytes(byteList);
   }
+**/
 
   Future<Uint8List> _generatePdf(
       List<String> allStrokes, String routineElement) async {
@@ -68,7 +68,6 @@ class PdfStrokePage extends StatelessWidget {
     for (int i = 0; i < allStrokes.length; i++) {
       theTeeNetto = i ~/ numberOfStrokes;
       theStrokeNetto = i % numberOfStrokes;
-      //logger.d(aRow.valueRow[i]);
       theStrokeTable[theTeeNetto + 1][theStrokeNetto + 1] = allStrokes[i];
     }
     // text formats

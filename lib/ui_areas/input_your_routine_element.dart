@@ -25,8 +25,15 @@ class InputYourRoutineElement extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
               child: TextField(
                 controller: aController,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(3.0),
+                    borderSide: BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.fromLTRB(12, 2, 8, 3),
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Element der Pre-Shot-Routine',

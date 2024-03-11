@@ -20,7 +20,7 @@ class SaveYourRound extends StatelessWidget {
   Widget build(BuildContext context) {
     StyledText saveRoundText = StyledText(
       aText: 'Runde abschliessen ',
-      aWidth: 200,
+      aWidth: 190,
       aLignment: 'left',
     );
 
