@@ -22,7 +22,8 @@ class SingleValuation extends StatelessWidget {
     aLignment: 'left',
   );
 
-  SizedBox aSpace = const SizedBox(width: 12);
+  SizedBox aSpaceSmall = const SizedBox(width: 4);
+  SizedBox aSpaceMiddle = const SizedBox(width: 12);
 
   String convertStrokeNumberToTee(String strokeNumber) {
     int strokeOnATee = int.parse(strokeNumber) % numberOfStrokes;
@@ -48,13 +49,14 @@ class SingleValuation extends StatelessWidget {
             padding: const EdgeInsets.all(4),
             child: Row(
               children: <Widget>[
+                aSpaceSmall,
                 textStroke,
                 StyledText(
                   aText: convertStrokeNumberToTee(strokeNumber),
                   aWidth: 28,
                   aLignment: 'right',
                 ),
-                aSpace,
+                aSpaceMiddle,
                 SizedBox(
                   width: 38,
                   child: TextField(

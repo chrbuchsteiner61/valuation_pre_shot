@@ -34,15 +34,6 @@ class PdfStrokePage extends StatelessWidget {
     );
   }
 
-/**
-  Future<void> savePdfFile(String fileName, Uint8List byteList) async {
-    final output = await getTemporaryDirectory();
-    var filePath = '${output.path}/$fileName';
-    final file = File(filePath);
-    await file.writeAsBytes(byteList);
-  }
-**/
-
   Future<Uint8List> _generatePdf(
       List<String> allStrokes, String routineElement) async {
     int theTeeNetto = 0;
