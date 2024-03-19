@@ -6,6 +6,7 @@ import 'package:valuation_pre_shot/ui_areas/change_the_tee.dart';
 import 'package:valuation_pre_shot/ui_areas/input_valuation.dart';
 import 'package:valuation_pre_shot/ui_areas//input_your_routine_element.dart';
 import 'package:valuation_pre_shot/ui_areas//save_your_round.dart';
+import 'package:valuation_pre_shot/ui_elements/the_info_drawer.dart';
 
 var logger = Logger();
 
@@ -84,7 +85,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String version = '1.04 / 12.03.2024';
+  final String version = '1.05 / 19.03.2024';
   int tee = 1;
 
   String aValuation = '';
@@ -150,6 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
+        drawer: TheInfoDrawer(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
