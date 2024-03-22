@@ -15,19 +15,24 @@ class TheInfoDrawer extends StatelessWidget {
           child: Text('Informationen'),
         ),
         Container(
+          color: Colors.lightBlue,
           child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Datenschutzerklärung',
               ),
-              Text('Diese App sammelt keine Personendaten'),
+              Text('Diese App sammelt und verarbeitet keine Personendaten'),
               Text('Ihre eingegebenen Daten werden '),
               Text('mit Schliessen der App gelöscht.'),
             ],
           ),
         ),
+        Text(''),
         Container(
+          color: Colors.lightBlue,
           child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Impressum',
