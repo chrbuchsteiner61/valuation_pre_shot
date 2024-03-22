@@ -35,7 +35,7 @@ class TheInfoDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Impressum',
+                'Kontakt',
               ),
               Text('Christian Buchsteiner'),
               Text('christian@buchsteinerconsulting.de'),
