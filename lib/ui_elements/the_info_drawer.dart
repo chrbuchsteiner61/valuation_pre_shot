@@ -70,11 +70,11 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
     _selectedLanguage = 'en'; // Assuming 'en' is the default language code
   }
 
- Future<void> _changeLanguage(String languageCode) async {
+void _changeLanguage(String? languageCode) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setString('savedLocale', languageCode);
+  await prefs.setString('savedLocale', languageCode!);
   // Trigger a rebuild of the app with the new locale
-  MyApp.of(context)!.setLocale(Locale(languageCode));
+  GolfRatingApp.of(context)!.setLocale(Locale(languageCode));
 }
   
 

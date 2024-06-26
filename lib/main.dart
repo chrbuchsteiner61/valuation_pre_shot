@@ -44,13 +44,34 @@ class TeeProvider with ChangeNotifier {
   }
 }
 
-class GolfRatingApp extends StatelessWidget {
-  final String? savedLocale;
-  const GolfRatingApp({super.key, this.savedLocale});
+class GolfRatingApp extends StatefulWidget {
+  final Locale savedLocale;
+  const GolfRatingApp({super.key, required this.savedLocale});
+
+  @override
+  _GolfRatingAppState createState() => _GolfRatingAppState();
+
+  // Define the 'of' method
+  static _GolfRatingAppState? of(BuildContext context) {
+    // This method returns the nearest _GolfRatingAppState instance in the widget tree
+    return context.findAncestorStateOfType<_GolfRatingAppState>();
+  }
+}
+
+class _GolfRatingAppState extends State<GolfRatingApp> {
+   Locale _locale = const Locale('en');
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+  //final String? savedLocale;
+  // const GolfRatingApp({super.key, this.savedLocale});
 
   @override
   Widget build(BuildContext context) {
-    Locale _locale = savedLocale != null ? Locale(savedLocale!) : Locale('en');
+  //  Locale _locale = savedLocale != null ? Locale(savedLocale!) : Locale('en');
     return MaterialApp(
       locale: _locale,
       supportedLocales: AppLocalizations.supportedLocales,
