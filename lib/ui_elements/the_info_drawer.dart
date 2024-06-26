@@ -20,20 +20,23 @@ class AStatement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          aStHeader,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        const SizedBox(
-            height: 8), // Add some spacing between the title and the body
-        Text(aStLine1),
-        Text(aStLine2),
-        Text(aStLine3),
-        const SizedBox(height: 8),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            aStHeader,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          const SizedBox(
+              height: 8), // Add some spacing between the title and the body
+          Text(aStLine1),
+          Text(aStLine2),
+          Text(aStLine3),
+          const SizedBox(height: 8),
+        ],
+      ),
     );
   }
 }
@@ -142,14 +145,13 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
             ),
           ),
           Container(
-            color: infoDrawerBackgroundColor,
-            child: AStatement(
-              aStHeader: localizations.translate('privStHeader'),
-              aStLine1: localizations.translate('privStLine1'),
-              aStLine2: localizations.translate('privStLine2'),
-              aStLine3: localizations.translate('privStLine3'),
-            ),
-          ),
+              color: infoDrawerBackgroundColor,
+              child: AStatement(
+                aStHeader: localizations.translate('privStHeader'),
+                aStLine1: localizations.translate('privStLine1'),
+                aStLine2: localizations.translate('privStLine2'),
+                aStLine3: localizations.translate('privStLine3'),
+              )),
           const SizedBox(
             width: 40,
           ),

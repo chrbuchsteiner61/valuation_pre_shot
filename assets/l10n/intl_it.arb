@@ -12,9 +12,9 @@
   "pdfTableHeader": "Buco / Colpo",
   "drawerHeader": "Informations",
   "privStHeader": "Protezione dati",
-  "privStLine1": "Diese App sammelt und verarbeitet keine Personendaten",
-  "privStLine2": "Ihre eingegebenen Daten werden ",
-  "privStLine3": "mit Schliessen der App gelöscht.",
+  "privStLine1": "Questa app salva la lingua scelta sul tuo dispositivo.",
+  "privStLine2": "Tutti i dati inseriti vengono memorizzati sul tuo dispositivo e verranno eliminati quando chiudi l'app.",
+  "privStLine3": "I tuoi dati non saranno oggetto di ulteriore trattamento e non saranno resi disponibili a terzi.",
   "kontakt": "Contatto",
   "language": "Lingua"
 }

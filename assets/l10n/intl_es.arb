@@ -12,9 +12,9 @@
   "pdfTableHeader": "Hoyo / Tiro",
   "drawerHeader": "Information",
   "privStHeader": "Protección de Datos",
-  "privStLine1": "Espania Diese App sammelt und verarbeitet keine Personendaten",
-  "privStLine2": "Espania Ihre eingegebenen Daten werden ",
-  "privStLine3": "Espania mit Schliessen der App gelöscht.",
+  "privStLine1": "Esta aplicación guarda el idioma que elijas en tu dispositivo.",
+  "privStLine2": "Todos los datos que ingresa se almacenan en su dispositivo y se eliminarán cuando cierre la aplicación.",
+  "privStLine3": "Sus datos no serán tratados posteriormente y no estarán disponibles para terceros.",
   "kontakt": "Contacto",
   "language": "Idioma"
 }

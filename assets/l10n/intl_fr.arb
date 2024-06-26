@@ -12,9 +12,9 @@
   "pdfTableHeader": "Trou / Coup",
   "drawerHeader": "Informations",
   "privStHeader": "Protection des données",
-  "privStLine1": "Diese App sammelt und verarbeitet keine Personendaten",
-  "privStLine2": "Ihre eingegebenen Daten werden ",
-  "privStLine3": "mit Schliessen der App gelöscht.",
+  "privStLine1": "Cette application enregistre la langue que vous choisissez sur votre appareil.",
+  "privStLine2": "Toutes les données que vous saisissez sont stockées sur votre appareil et seront supprimées lorsque vous fermerez l'application.",
+  "privStLine3": "Vos données ne seront pas traitées ultérieurement et ne seront pas mises à la disposition de tiers.",
   "kontakt": "Contact",
   "language": "Langue"
 }

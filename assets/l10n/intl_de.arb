@@ -1,7 +1,7 @@
 {
   "appTitle": "Bewerte Deine Pre-Shot-Routine",
   "chooseYourRoutine": "Ich bewerte mein/e ",
-  "hintTextRoutine": "Element der Pre shot Routine",
+  "hintTextRoutine": "Element der Pre Shot Routine",
   "theTee": "Bahn",
   "aStroke": "Schlag",
   "rateYourStrokes": "Bewerten Sie Ihre Schläge",
@@ -12,9 +12,9 @@
   "pdfTableHeader": "Bahn / Schlag", 
   "drawerHeader": "Informationen",
   "privStHeader": "Datenschutzerklärung",
-  "privStLine1": "Diese App sammelt und verarbeitet keine Personendaten",
-  "privStLine2": "Ihre eingegebenen Daten werden ",
-  "privStLine3": "mit Schliessen der App gelöscht.",
+  "privStLine1": "Diese App speichert auf Ihrem Gerät die von Ihnen gewählte Sprache.",
+  "privStLine2": "Alle von Ihnen eingegebenen Daten sind auf Ihrem Gerät gespeichert und werden mit Schliessen der App gelöscht.",
+  "privStLine3": "Ihre Daten werden nicht weiter verarbeitet und nicht Dritten zur Verfügung gestellt.",
   "kontakt": "Kontakt",
   "language": "Sprache"
 }
