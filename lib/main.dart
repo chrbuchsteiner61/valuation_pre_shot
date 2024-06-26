@@ -6,8 +6,8 @@ import 'package:valuation_pre_shot/l10n.dart';
 
 import 'package:valuation_pre_shot/ui_areas/change_the_tee.dart';
 import 'package:valuation_pre_shot/ui_areas/input_valuation.dart';
-import 'package:valuation_pre_shot/ui_areas//input_your_routine_element.dart';
-import 'package:valuation_pre_shot/ui_areas//save_your_round.dart';
+import 'package:valuation_pre_shot/ui_areas/input_your_routine_element.dart';
+import 'package:valuation_pre_shot/ui_areas/save_your_round.dart';
 import 'package:valuation_pre_shot/ui_elements/the_info_drawer.dart';
 import 'package:valuation_pre_shot/constants.dart';
 import 'package:valuation_pre_shot/styles/theme_data.dart';
@@ -17,7 +17,9 @@ var logger = Logger();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? savedLocale = prefs.getString('savedLocale');
+
+  Locale savedLocale = Locale(prefs.getString('savedLocale')?? 'en');
+
   runApp(
     MultiProvider(
       providers: [
@@ -46,24 +48,25 @@ class TeeProvider with ChangeNotifier {
 
 class GolfRatingApp extends StatefulWidget {
   final Locale savedLocale;
+
   const GolfRatingApp({super.key, required this.savedLocale});
 
   @override
-  _GolfRatingAppState createState() => _GolfRatingAppState();
+  GolfRatingAppState createState() => GolfRatingAppState();
 
   // Define the 'of' method
-  static _GolfRatingAppState? of(BuildContext context) {
+  static GolfRatingAppState? of(BuildContext context) {
     // This method returns the nearest _GolfRatingAppState instance in the widget tree
-    return context.findAncestorStateOfType<_GolfRatingAppState>();
+    return context.findAncestorStateOfType<GolfRatingAppState>();
   }
 }
 
-class _GolfRatingAppState extends State<GolfRatingApp> {
+class GolfRatingAppState extends State<GolfRatingApp> {
    Locale _locale = const Locale('en');
 
-  void setLocale(Locale locale) {
+  void setLocale(String locale) {
     setState(() {
-      _locale = locale;
+      _locale = Locale(locale);
     });
   }
   //final String? savedLocale;

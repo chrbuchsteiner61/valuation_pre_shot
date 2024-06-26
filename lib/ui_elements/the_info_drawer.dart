@@ -49,7 +49,7 @@ class LanguageFlag extends StatelessWidget {
       countryCode,
       height: 24,
       width: 36,
-      );
+    );
   }
 }
 
@@ -70,13 +70,14 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
     _selectedLanguage = 'en'; // Assuming 'en' is the default language code
   }
 
-void _changeLanguage(String? languageCode) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setString('savedLocale', languageCode!);
-  // Trigger a rebuild of the app with the new locale
-  GolfRatingApp.of(context)!.setLocale(Locale(languageCode));
-}
-  
+  void _changeLanguage(String? languageCode) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('savedLocale', languageCode!);
+    // Trigger a rebuild of the app with the new locale
+    if (mounted) {
+      GolfRatingApp.of(context)!.setLocale(languageCode);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
