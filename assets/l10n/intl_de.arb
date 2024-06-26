@@ -1,0 +1,20 @@
+{
+  "appTitle": "Bewerte Deine Pre-Shot-Routine",
+  "chooseYourRoutine": "Ich bewerte mein/e ",
+  "hintTextRoutine": "Element der Pre shot Routine",
+  "theTee": "Bahn",
+  "aStroke": "Schlag",
+  "rateYourStrokes": "Bewerten Sie Ihre Schläge",
+  "closeTheRound": "Runde abschliessen ",
+  "pdfTitle": "Post Shot Routine: Bewertung",
+  "pdfSubHeader": "Runde vom ",
+  "pdfRoutine": "Beurteilter Teil der Pre shot-Routine: ",
+  "pdfTableHeader": "Bahn / Schlag", 
+  "drawerHeader": "Informationen",
+  "privStHeader": "Datenschutzerklärung",
+  "privStLine1": "Diese App sammelt und verarbeitet keine Personendaten",
+  "privStLine2": "Ihre eingegebenen Daten werden ",
+  "privStLine3": "mit Schliessen der App gelöscht.",
+  "kontakt": "Kontakt",
+  "language": "Sprache"
+}

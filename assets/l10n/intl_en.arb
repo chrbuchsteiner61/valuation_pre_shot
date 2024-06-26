@@ -1,0 +1,20 @@
+{
+  "appTitle": "Rate your pre shot routine",
+  "chooseYourRoutine": "I rate my ",
+  "hintTextRoutine": "Element of your pre shot routine",
+  "theTee": "Tee",
+  "aStroke": "Stroke",
+  "rateYourStrokes": "Rate your strokes",
+  "closeTheRound": "Close round ",
+  "pdfTitle": "Post shot routine: rating",
+  "pdfSubHeader": "Round of ",
+  "pdfRoutine": "Rated part of your pre shot routine: ",
+  "pdfTableHeader": "Tee / Stroke",  
+  "drawerHeader": "Informations",
+  "privStHeader": "Data protection",
+  "privStLine1": "Diese App sammelt und verarbeitet keine Personendaten",
+  "privStLine2": "Ihre eingegebenen Daten werden ",
+  "privStLine3": "mit Schliessen der App gelöscht.",
+  "kontakt": "Contact",
+  "language": "Language"
+}

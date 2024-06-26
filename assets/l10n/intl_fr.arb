@@ -1,0 +1,20 @@
+{
+  "appTitle": "Évaluez votre routine pré-tir",
+  "chooseYourRoutine": "J'évalue mon/ma ",
+  "hintTextRoutine": "Élément de la routine pré-tir",
+  "theTee": "Trou",
+  "aStroke": "Coup",
+  "rateYourStrokes": "Évaluez vos coups",
+  "closeTheRound": "Terminer la partie",
+  "pdfTitle": "Routine post-tir: Évaluation",
+  "pdfSubHeader": "Partie du ",
+  "pdfRoutine": "Partie évaluée de la routine pré-tir : ",
+  "pdfTableHeader": "Trou / Coup",
+  "drawerHeader": "Informations",
+  "privStHeader": "Protection des données",
+  "privStLine1": "Diese App sammelt und verarbeitet keine Personendaten",
+  "privStLine2": "Ihre eingegebenen Daten werden ",
+  "privStLine3": "mit Schliessen der App gelöscht.",
+  "kontakt": "Contact",
+  "language": "Langue"
+}

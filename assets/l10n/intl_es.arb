@@ -1,0 +1,20 @@
+{
+  "appTitle": "Evalúa tu rutina previa al tiro",
+  "chooseYourRoutine": "Estoy evaluando mi ",
+  "hintTextRoutine": "Elemento de la rutina previa al tiro",
+  "theTee": "Hoyo",
+  "aStroke": "Tiro",
+  "rateYourStrokes": "Califica tus tiros",
+  "closeTheRound": "Cerrar la ronda",
+  "pdfTitle": "Rutina post-tiro: Evaluación",
+  "pdfSubHeader": "Ronda del ",
+  "pdfRoutine": "Parte evaluada de la rutina previa al tiro: ",
+  "pdfTableHeader": "Hoyo / Tiro",
+  "drawerHeader": "Information",
+  "privStHeader": "Protección de Datos",
+  "privStLine1": "Espania Diese App sammelt und verarbeitet keine Personendaten",
+  "privStLine2": "Espania Ihre eingegebenen Daten werden ",
+  "privStLine3": "Espania mit Schliessen der App gelöscht.",
+  "kontakt": "Contacto",
+  "language": "Idioma"
+}

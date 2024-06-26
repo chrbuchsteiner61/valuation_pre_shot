@@ -1,0 +1,20 @@
+{
+  "appTitle": "Valuta la tua routine pre-tiro",
+  "chooseYourRoutine": "Sto valutando il mio/la mia ",
+  "hintTextRoutine": "Elemento della routine pre-tiro",
+  "theTee": "Buco",
+  "aStroke": "Colpo",
+  "rateYourStrokes": "Valuta i tuoi colpi",
+  "closeTheRound": "Chiudi il giro",
+  "pdfTitle": "Routine post-tiro: Valutazione",
+  "pdfSubHeader": "Giro del ",
+  "pdfRoutine": "Parte valutata della routine pre-tiro: ",
+  "pdfTableHeader": "Buco / Colpo",
+  "drawerHeader": "Informations",
+  "privStHeader": "Protezione dati",
+  "privStLine1": "Diese App sammelt und verarbeitet keine Personendaten",
+  "privStLine2": "Ihre eingegebenen Daten werden ",
+  "privStLine3": "mit Schliessen der App gelöscht.",
+  "kontakt": "Contatto",
+  "language": "Lingua"
+}
