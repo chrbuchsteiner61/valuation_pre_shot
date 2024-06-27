@@ -94,7 +94,6 @@ class StartingPage extends StatefulWidget {
   @override
   State<StartingPage> createState() => _StartingPageState();
 }
-
 class _StartingPageState extends State<StartingPage> {
   int tee = 1;
   String aValuation = '';
