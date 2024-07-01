@@ -70,9 +70,6 @@ flutter:
 
   generate: true 
 
-  assets:
-    - assets/l10n/intl_en.arb
-
   fonts:
     - family: Noto
       fonts:

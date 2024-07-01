@@ -11,6 +11,7 @@ import 'package:valuation_pre_shot/ui_areas/save_your_round.dart';
 import 'package:valuation_pre_shot/ui_elements/the_info_drawer.dart';
 import 'package:valuation_pre_shot/constants.dart';
 import 'package:valuation_pre_shot/styles/theme_data.dart';
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart' as app_loc;
 
 var logger = Logger();
 
@@ -18,7 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  Locale savedLocale = Locale(prefs.getString('savedLocale')?? 'en');
+  Locale savedLocale = Locale(prefs.getString('savedLocale') ?? 'en');
 
   runApp(
     MultiProvider(
@@ -62,7 +63,7 @@ class GolfRatingApp extends StatefulWidget {
 }
 
 class GolfRatingAppState extends State<GolfRatingApp> {
-   Locale _locale = const Locale('en');
+  Locale _locale = const Locale('en');
 
   void setLocale(String locale) {
     setState(() {
@@ -74,7 +75,7 @@ class GolfRatingAppState extends State<GolfRatingApp> {
 
   @override
   Widget build(BuildContext context) {
-  //  Locale _locale = savedLocale != null ? Locale(savedLocale!) : Locale('en');
+    //  Locale _locale = savedLocale != null ? Locale(savedLocale!) : Locale('en');
     return MaterialApp(
       locale: _locale,
       supportedLocales: AppLocalizations.supportedLocales,
@@ -83,7 +84,6 @@ class GolfRatingAppState extends State<GolfRatingApp> {
       title: 'Golf Shot Valuation',
       theme: AppTheme.data,
       home: const StartingPage(),
-
     );
   }
 }
@@ -94,6 +94,7 @@ class StartingPage extends StatefulWidget {
   @override
   State<StartingPage> createState() => _StartingPageState();
 }
+
 class _StartingPageState extends State<StartingPage> {
   int tee = 1;
   String aValuation = '';

@@ -6,7 +6,8 @@ import 'package:pdf/pdf.dart';
 import 'dart:typed_data';
 import 'package:printing/printing.dart';
 import 'package:valuation_pre_shot/constants.dart';
-import 'package:valuation_pre_shot/l10n.dart';
+//import 'package:valuation_pre_shot/localizations.dart'; // Add this line to import the file that contains the definition of 'AppLocalizations'
+import 'package:valuation_pre_shot/l10n.dart'; // Add this line to import the file that contains the definition of 'AppLocalizations'
 
 final logger = Logger();
 
