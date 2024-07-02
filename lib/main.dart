@@ -71,29 +71,23 @@ class GolfRatingAppState extends State<GolfRatingApp> {
       _locale = Locale(locale);
     });
   }
-  //final String? savedLocale;
-  // const GolfRatingApp({super.key, this.savedLocale});
 
   @override
   Widget build(BuildContext context) {
-
-  //  Locale _locale = savedLocale != null ? Locale(savedLocale!) : const Locale('en');
-
     return MaterialApp(
-       localizationsDelegates: const [
+      localizationsDelegates: const [
         AppLocalizations.delegate, // Add this line
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en'),        
+        Locale('en'),
         Locale('de'),
         Locale('fr'),
         Locale('es'),
         Locale('it'),
       ],
-      
       debugShowCheckedModeBanner: false,
       title: 'Rate your Golf Routine',
       theme: AppTheme.data,
