@@ -2,7 +2,8 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:valuation_pre_shot/constants.dart';
-import 'package:valuation_pre_shot/l10n.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:valuation_pre_shot/main.dart';
 
 class AStatement extends StatelessWidget {
@@ -94,12 +95,12 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
               color: Colors.green,
             ),
             child: Text(
-              localizations.translate('drawerHeader'),
+              localizations!.drawerHeader,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
           Text(
-            localizations.translate('language'),
+            localizations.language,
             style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
           ),
@@ -147,10 +148,10 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
           Container(
               color: infoDrawerBackgroundColor,
               child: AStatement(
-                aStHeader: localizations.translate('privStHeader'),
-                aStLine1: localizations.translate('privStLine1'),
-                aStLine2: localizations.translate('privStLine2'),
-                aStLine3: localizations.translate('privStLine3'),
+                aStHeader: localizations.privStHeader,
+                aStLine1: localizations.privStLine1,
+                aStLine2: localizations.privStLine2,
+                aStLine3: localizations.privStLine3,
               )),
           const SizedBox(
             width: 40,
@@ -158,7 +159,7 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
           Container(
             color: infoDrawerBackgroundColor,
             child: AStatement(
-              aStHeader: localizations.translate('kontakt'),
+              aStHeader: localizations.kontakt,
               aStLine1: 'Christian Buchsteiner',
               aStLine2: 'christian@buchsteinerconsulting.de',
               aStLine3: 'Wacholderweg 15a, D-61440 Oberursel',

@@ -76,7 +76,9 @@ class GolfRatingAppState extends State<GolfRatingApp> {
 
   @override
   Widget build(BuildContext context) {
-    //  Locale _locale = savedLocale != null ? Locale(savedLocale!) : Locale('en');
+
+  //  Locale _locale = savedLocale != null ? Locale(savedLocale!) : const Locale('en');
+
     return MaterialApp(
        localizationsDelegates: const [
         AppLocalizations.delegate, // Add this line
