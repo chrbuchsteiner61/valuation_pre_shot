@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:valuation_pre_shot/l10n.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:valuation_pre_shot/ui_areas/change_the_tee.dart';
 import 'package:valuation_pre_shot/ui_areas/input_valuation.dart';
@@ -11,7 +13,6 @@ import 'package:valuation_pre_shot/ui_areas/save_your_round.dart';
 import 'package:valuation_pre_shot/ui_elements/the_info_drawer.dart';
 import 'package:valuation_pre_shot/constants.dart';
 import 'package:valuation_pre_shot/styles/theme_data.dart';
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart' as app_loc;
 
 var logger = Logger();
 
@@ -77,11 +78,22 @@ class GolfRatingAppState extends State<GolfRatingApp> {
   Widget build(BuildContext context) {
     //  Locale _locale = savedLocale != null ? Locale(savedLocale!) : Locale('en');
     return MaterialApp(
-      locale: _locale,
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+       localizationsDelegates: const [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),        
+        Locale('de'),
+        Locale('fr'),
+        Locale('es'),
+        Locale('it'),
+      ],
+      
       debugShowCheckedModeBanner: false,
-      title: 'Golf Shot Valuation',
+      title: 'Rate your Golf Routine',
       theme: AppTheme.data,
       home: const StartingPage(),
     );
@@ -150,7 +162,7 @@ class _StartingPageState extends State<StartingPage> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
-    final String localizedTitle = localizations.translate('appTitle');
+    final String localizedTitle = localizations!.appTitle;
 
     Text bottomText = Text(
       version,

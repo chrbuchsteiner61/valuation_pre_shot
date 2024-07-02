@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:valuation_pre_shot/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:valuation_pre_shot/ui_elements/colored_container.dart';
 import 'package:valuation_pre_shot/ui_elements/in_decrease_button.dart';
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
@@ -21,7 +21,7 @@ class ChangeTheTee extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: StyledText(
-            aText: localizations.translate('theTee'),
+            aText: localizations!.theTee,
             aWidth: 110,
             aAlignment: TextAlign.left,
           ),

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:intl/intl.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class AppLocalizations {
@@ -36,7 +36,7 @@ class AppLocalizations {
 
   Future<bool> load() async {
     final String jsonString =
-        await rootBundle.loadString('l10n/intl_${locale.languageCode}.arb');
+        await rootBundle.loadString('l10n/app_${locale.languageCode}.arb');
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
     _localizedStrings = jsonMap.map((key, value) {

@@ -34,9 +34,9 @@ dependencies:
   #path_provider: ^2.1.2
   #permission_handler: ^11.2.0
   printing: any
-  intl: any
   flutter_localizations:
     sdk: flutter
+  intl: any 
   country_flags: ^3.0.0
   shared_preferences: ^2.2.3
 

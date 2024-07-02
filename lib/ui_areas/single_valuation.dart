@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:valuation_pre_shot/constants.dart';
-import 'package:valuation_pre_shot/l10n.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/methods/numerical_formatter.dart';
 
@@ -47,7 +48,7 @@ class SingleValuation extends StatelessWidget {
               children: <Widget>[
                 aSpaceSmall,
                 StyledText(
-                  aText: localizations.translate('aStroke'),
+                  aText: localizations!.aStroke,
                   aWidth: 60,
                   aAlignment: TextAlign.left,
                 ),

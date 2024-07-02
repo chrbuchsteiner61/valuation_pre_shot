@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/ui_elements/colored_container.dart';
-import 'package:valuation_pre_shot/l10n.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InputYourRoutineElement extends StatelessWidget {
   final TextEditingController aController;
@@ -17,7 +18,7 @@ class InputYourRoutineElement extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: StyledText(
-              aText: localizations.translate('chooseYourRoutine'),
+              aText: localizations!.chooseYourRoutine,
               aWidth: 150,
               aAlignment: TextAlign.left,
             ),
@@ -38,7 +39,7 @@ class InputYourRoutineElement extends StatelessWidget {
                   contentPadding: const EdgeInsets.fromLTRB(12, 2, 8, 3),
                   filled: true,
                   fillColor: Colors.white,
-                  hintText: localizations.translate('hintTextRoutine'),
+                  hintText: localizations.hintTextRoutine,
                 ),
                 style: Theme.of(context).textTheme.bodyLarge,
               ),

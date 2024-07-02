@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:valuation_pre_shot/l10n.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/methods/pdf_stroke_page.dart';
@@ -21,7 +22,7 @@ class SaveYourRound extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
     StyledText saveRoundText = StyledText(
-      aText: localizations.translate('closeTheRound'),
+      aText: localizations!.closeTheRound,
       aWidth: 190,
       aAlignment: TextAlign.left,
     );

@@ -6,8 +6,9 @@ import 'package:pdf/pdf.dart';
 import 'dart:typed_data';
 import 'package:printing/printing.dart';
 import 'package:valuation_pre_shot/constants.dart';
-//import 'package:valuation_pre_shot/localizations.dart'; // Add this line to import the file that contains the definition of 'AppLocalizations'
-import 'package:valuation_pre_shot/l10n.dart'; // Add this line to import the file that contains the definition of 'AppLocalizations'
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 final logger = Logger();
 
@@ -28,7 +29,7 @@ class PdfStrokePage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(localizations.translate('pdfTitle')),
+          title: Text(localizations!.pdfTitle),
           actions: [
             IconButton(
               icon: const Icon(
@@ -64,7 +65,7 @@ class PdfStrokePage extends StatelessWidget {
       growable: false,
     );
 
-    strokeTable[0][0] = localizations.translate('pdfTableHeader');
+    strokeTable[0][0] = localizations!.pdfTableHeader;
 
     for (int i = 1; i <= numberOfStrokesPerTee; i++) {
       strokeTable[0][i] = i.toString();
@@ -96,13 +97,13 @@ class PdfStrokePage extends StatelessWidget {
               pw.Container(
                 alignment: pw.Alignment.centerLeft,
                 child: pw.Text(
-                    localizations.translate('pdfSubHeader') + formattedDate,
+                    localizations.pdfSubHeader + formattedDate,
                     style: headerStyle),
               ),
               pw.Container(
                 alignment: pw.Alignment.centerLeft,
                 child: pw.Text(
-                    localizations.translate('pdfRoutine') + routineElement,
+                    localizations.pdfRoutine + routineElement,
                     style: headerStyle),
                 // child: pw.Text('Beurteilter Teil der Pre shot-Routine: $routineElement', style: headerStyle),
               ),
