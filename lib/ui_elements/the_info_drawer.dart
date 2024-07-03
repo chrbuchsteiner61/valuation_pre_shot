@@ -1,6 +1,7 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:valuation_pre_shot/constants.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -65,13 +66,14 @@ class TheInfoDrawer extends StatefulWidget {
 }
 
 class TheInfoDrawerState extends State<TheInfoDrawer> {
-  String? _selectedLanguage;
+  String? _selectedLanguage; 
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     // Set default language if necessary
-    _selectedLanguage = 'en'; // Assuming 'en' is the default language code
+    _selectedLanguage = prefs.getString('savedLocale') ?? 'en'; // Assuming 'en' is the default language code
   }
 
   void _changeLanguage(String? languageCode) async {
