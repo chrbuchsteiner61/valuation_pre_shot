@@ -7,7 +7,7 @@ const numberOfStrokes = numberOfTees * numberOfStrokesPerTee;
 
 const String version = '1.20 / 11.07.2024';
 
-const infoDrawerBackgroundColor = Colors.lightBlue;
+const infoDrawerBackgroundColor = Colors.lightBlueAccent;
 
 List<String> allStrokes = List<String>.generate(
     numberOfStrokesPerTee * numberOfTees, (int index) => initialValue,
