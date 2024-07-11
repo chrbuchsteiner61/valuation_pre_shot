@@ -69,10 +69,8 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
   String? _selectedLanguage; 
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // Set default language if necessary
     _selectedLanguage = GolfRatingApp.of(context)!.currentLocale.toString();
     _selectedLanguage ??= 'en';
     // Assuming 'en' is the default language code
@@ -93,7 +91,6 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    //logger.d(_selectedLanguage);
     final localizations = AppLocalizations.of(context);
    
     return Drawer(
