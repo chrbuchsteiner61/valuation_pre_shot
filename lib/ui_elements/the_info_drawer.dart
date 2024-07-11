@@ -71,21 +71,30 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
   void initState() {
     super.initState();
     // Set default language if necessary
-    _selectedLanguage = 'en'; // Assuming 'en' is the default language code
+    _selectedLanguage = GolfRatingApp.of(context)!.currentLocale.toString();
+    _selectedLanguage ??= 'en';
+    // Assuming 'en' is the default language code
   }
 
   void _changeLanguage(String? languageCode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('savedLocale', languageCode!);
+
     // Trigger a rebuild of the app with the new locale
     if (mounted) {
       GolfRatingApp.of(context)!.setLocale(languageCode);
+      setState(() {
+        _selectedLanguage = languageCode;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    //logger.d(_selectedLanguage);
     final localizations = AppLocalizations.of(context);
+    //logger.d(localizations);
+    logger.d(_selectedLanguage);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,

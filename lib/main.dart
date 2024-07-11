@@ -69,8 +69,11 @@ class GolfRatingAppState extends State<GolfRatingApp> {
   void setLocale(String locale) {
     setState(() {
       _locale = Locale(locale);
+      // logger.d(_locale);
     });
   }
+
+  Locale get currentLocale => _locale;
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +95,7 @@ class GolfRatingAppState extends State<GolfRatingApp> {
       title: 'Rate your Golf Routine',
       theme: AppTheme.data,
       home: const StartingPage(),
+      locale: _locale,
     );
   }
 }
@@ -159,7 +163,7 @@ class _StartingPageState extends State<StartingPage> {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
     final String localizedTitle = localizations!.appTitle;
-
+    //logger.d(localizedTitle);
     Text bottomText = Text(
       version,
       style: Theme.of(context).textTheme.bodyLarge,
