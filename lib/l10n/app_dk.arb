@@ -1,0 +1,20 @@
+{
+  "appTitle": "danish - Rate your routine",
+  "chooseYourRoutine": "I rate my ",
+  "hintTextRoutine": "Element of your routine",
+  "theTee": "Tee",
+  "aStroke": "Stroke",
+  "rateYourStrokes": "Rate your strokes",
+  "closeTheRound": "Close round ",
+  "pdfTitle": "My routine: rating",
+  "pdfSubHeader": "Round of ",
+  "pdfRoutine": "Rated part of your routine: ",
+  "pdfTableHeader": "Tee / Stroke",  
+  "drawerHeader": "Informations",
+  "privStHeader": "Data protection",
+  "privStLine1": "This app saves the language you choose on your device.",
+  "privStLine2": "All data you enter is stored on your device and will be deleted when you close the app.",
+  "privStLine3": "Your data will not be further processed and will not be made available to third parties.",
+  "kontakt": "Contact",
+  "language": "Language"
+}

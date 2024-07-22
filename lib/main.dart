@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:valuation_pre_shot/language_persistent.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,16 +19,16 @@ var logger = Logger();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  Locale savedLocale = Locale(prefs.getString('savedLocale') ?? 'en');
-
+  //Locale savedLocale = Locale(prefs.getString('savedLocale') ?? 'es');
+  //logger.d(savedLocale);
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TeeProvider()),
       ],
-      child: GolfRatingApp(savedLocale: savedLocale),
+      child: const GolfRatingApp(),
     ),
   );
 }
@@ -49,9 +50,9 @@ class TeeProvider with ChangeNotifier {
 }
 
 class GolfRatingApp extends StatefulWidget {
-  final Locale savedLocale;
+  //final Locale savedLocale;
 
-  const GolfRatingApp({super.key, required this.savedLocale});
+  const GolfRatingApp({super.key});
 
   @override
   GolfRatingAppState createState() => GolfRatingAppState();
@@ -64,19 +65,32 @@ class GolfRatingApp extends StatefulWidget {
 }
 
 class GolfRatingAppState extends State<GolfRatingApp> {
-  Locale _locale = const Locale('en');
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
+  LanguageService languageService = LanguageService();
+  Locale _locale = const Locale('es');
+
+  Future<void> initialLocale() async {
+    String? aLanguageKey = await languageService.loadLanguage();
+    setState(() {
+      logger.d('initial: $aLanguageKey');
+      _locale = Locale(aLanguageKey ?? 'de');
+    });
+  }
 
   void setLocale(String locale) {
     setState(() {
       _locale = Locale(locale);
+
       // logger.d(_locale);
     });
   }
 
+  // Locale get currentLocale => Locale(prefs.getString('savedLocale') ?? 'en');
   Locale get currentLocale => _locale;
 
   @override
   Widget build(BuildContext context) {
+    initialLocale();
     return MaterialApp(
       localizationsDelegates: const [
         AppLocalizations.delegate, // Add this line
@@ -90,6 +104,8 @@ class GolfRatingAppState extends State<GolfRatingApp> {
         Locale('fr'),
         Locale('es'),
         Locale('it'),
+        Locale('dk'),
+        Locale('se'),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Rate your Golf Routine',
