@@ -1,0 +1,20 @@
+{
+  "appTitle": "Betygsätt din rutin",
+  "chooseYourRoutine": "Jag betygsätter min ",
+  "hintTextRoutine": "Element i din rutin",
+  "theTee": "Tee",
+  "aStroke": "Stroke",
+  "rateYourStrokes": "Betygsätt dina slag",
+  "closeTheRound": "Stäng omgången ",
+  "pdfTitle": "Min rutin: betyg",
+  "pdfSubHeader": "Omgång av ",
+  "pdfRoutine": "Betygsatt del av din rutin: ",
+  "pdfTableHeader": "Tee / Stroke",  
+  "drawerHeader": "Information",
+  "privStHeader": "Dataskydd",
+  "privStLine1": "Denna app sparar språket du väljer på din enhet.",
+  "privStLine2": "All data du anger lagras på din enhet och kommer att raderas när du stänger appen.",
+  "privStLine3": "Dina uppgifter kommer inte att behandlas vidare och kommer inte att göras tillgängliga för tredje part.",
+  "kontakt": "Kontakt",
+  "language": "Språk"
+}

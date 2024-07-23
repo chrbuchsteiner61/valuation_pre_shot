@@ -4,19 +4,18 @@ import 'package:logger/logger.dart';
 var logger = Logger();
 
 class LanguageService {
-  static const String _languageKey = 'de';
+  static const String languageCode = 'de';
 
   // Save selected language to shared preferences
   Future<void> saveLanguage(String languageCode) async {
-    logger.d('save: $_languageKey');
+    logger.d('save: $languageCode');
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_languageKey, languageCode);
+    await prefs.setString('languageKey', languageCode);
   }
 
   // Load selected language from shared preferences
   Future<String?> loadLanguage() async {
     final prefs = await SharedPreferences.getInstance();
-    logger.d('load: $_languageKey');
-    return prefs.getString(_languageKey);
+    return prefs.getString('languageKey');
   }
 }

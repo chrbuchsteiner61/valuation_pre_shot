@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:valuation_pre_shot/language_persistent.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -104,8 +102,8 @@ class GolfRatingAppState extends State<GolfRatingApp> {
         Locale('fr'),
         Locale('es'),
         Locale('it'),
-        Locale('dk'),
-        Locale('se'),
+        Locale('da'),
+        Locale('sv'),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Rate your Golf Routine',

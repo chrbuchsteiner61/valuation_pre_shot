@@ -73,13 +73,11 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
     super.initState();
     _selectedLanguage = GolfRatingApp.of(context)!.currentLocale.toString();
     logger.d(_selectedLanguage);
-    // _selectedLanguage ??= 'en';
-    // Assuming 'en' is the default language code
   }
 
   Future<void> _changeLanguage(String? languageCode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('savedLocale', languageCode!);
+    await prefs.setString('languageKey', languageCode!);
     logger.d('in Speichern $languageCode');
     // Trigger a rebuild of the app with the new locale
     if (mounted) {

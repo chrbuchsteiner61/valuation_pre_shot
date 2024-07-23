@@ -1,0 +1,20 @@
+{
+ "appTitle": "Vurder din rutine",
+  "chooseYourRoutine": "Jeg bedømmer mine ",
+  "hintTextRoutine": "Element af din rutine",
+  "theTee": "Tee",
+  "aStroke": "Stroke",
+  "rateYourStrokes": "Vurder dine slag",
+  "closeTheRound": "Luk runde ",
+  "pdfTitle": "Min rutine: vurdering",
+  "pdfSubHeader": "Runde af ",
+  "pdfRoutine": "Vurderede del af din rutine: ",
+  "pdfTableHeader": "Tee / slagtilfælde",  
+  "drawerHeader": "Information",
+  "privStHeader": "Databeskyttelse",
+  "privStLine1": "Denne app gemmer det sprog, du vælger på din enhed.",
+  "privStLine2": "Alle data, du indtaster, gemmes på din enhed og vil blive slettet, når du lukker appen.",
+  "privStLine3": "Dine data vil ikke blive behandlet yderligere og vil ikke blive gjort tilgængelige for tredjeparter.",
+  "kontakt": "Kontakt",
+  "language": "Sprog"
+}
