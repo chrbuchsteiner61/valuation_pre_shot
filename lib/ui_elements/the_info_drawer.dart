@@ -149,13 +149,13 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
                   ),
                 ),
                 DropdownMenuItem(
-                  value: 'dk',
+                  value: 'da',
                   child: LanguageFlag(
                     countryCode: 'DK',
                   ),
                 ),
                 DropdownMenuItem(
-                  value: 'se',
+                  value: 'sv',
                   child: LanguageFlag(
                     countryCode: 'SE',
                   ),
