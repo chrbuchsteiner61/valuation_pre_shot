@@ -70,7 +70,7 @@ class GolfRatingAppState extends State<GolfRatingApp> {
   Future<void> initialLocale() async {
     String? aLanguageKey = await languageService.loadLanguage();
     setState(() {
-      logger.d('initial: $aLanguageKey');
+      //logger.d('initial: $aLanguageKey');
       _locale = Locale(aLanguageKey ?? 'de');
     });
   }
