@@ -5,7 +5,7 @@ const numberOfTees = 18;
 const initialValue = '';
 const numberOfStrokes = numberOfTees * numberOfStrokesPerTee;
 
-const String version = '1.22 / 23.07.2024';
+const String version = '1.22 / 26.07.2024';
 
 const infoDrawerBackgroundColor = Colors.lightBlueAccent;
 
