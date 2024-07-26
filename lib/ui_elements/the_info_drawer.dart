@@ -117,44 +117,60 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
               elevation: 8,
               dropdownColor: Colors.white,
               onChanged: _changeLanguage,
-              items: const [
+              items: [
                 DropdownMenuItem(
-                  value: 'en',
-                  child: LanguageFlag(
-                    countryCode: 'GB',
-                  ),
+                  value: Language.english.languageKey,
+                  child: Row(children: <Widget>[
+                    LanguageFlag(
+                      countryCode: Language.english.flagKey,
+                    ),
+                    spaceBetween,
+                    Text(Language.english.nameKey),
+                  ]),
                 ),
                 DropdownMenuItem(
-                  value: 'de',
-                  child: LanguageFlag(
-                    countryCode: 'DE',
-                  ),
+                  value: Language.german.languageKey,
+                  child: Row(children: <Widget>[
+                    LanguageFlag(
+                      countryCode: Language.german.flagKey,
+                    ),
+                    spaceBetween,
+                    Text(Language.german.nameKey),
+                  ]),
                 ),
                 DropdownMenuItem(
-                  value: 'fr',
-                  child: LanguageFlag(
-                    countryCode: 'FR',
-                  ),
+                  value: Language.french.languageKey,
+                  child: Row(children: <Widget>[
+                    LanguageFlag(
+                      countryCode: Language.french.flagKey,
+                    ),
+                    spaceBetween,
+                    Text(Language.french.nameKey),
+                  ]),
                 ),
                 DropdownMenuItem(
-                  value: 'es',
-                  child: LanguageFlag(
-                    countryCode: 'ES',
-                  ),
+                  value: Language.spanish.languageKey,
+                  child: Row(children: <Widget>[
+                    LanguageFlag(
+                      countryCode: Language.spanish.flagKey,
+                    ),
+                    spaceBetween,
+                    Text(Language.spanish.nameKey),
+                  ]),
                 ),
                 DropdownMenuItem(
-                  value: 'it',
-                  child: LanguageFlag(
+                  value: Language.italian.languageKey,
+                  child: const LanguageFlag(
                     countryCode: 'IT',
                   ),
                 ),
-                DropdownMenuItem(
+                const DropdownMenuItem(
                   value: 'da',
                   child: LanguageFlag(
                     countryCode: 'DK',
                   ),
                 ),
-                DropdownMenuItem(
+                const DropdownMenuItem(
                   value: 'sv',
                   child: LanguageFlag(
                     countryCode: 'SE',
