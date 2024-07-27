@@ -7,36 +7,41 @@ import 'dart:typed_data';
 import 'package:printing/printing.dart';
 import 'package:valuation_pre_shot/constants.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final logger = Logger();
 
 class PdfStrokePage extends StatelessWidget {
   final List<String> allStrokes;
   final String routineElement;
+  final String aTitle;
+  final String aTableHeader;
+  final String aSubHeader;
+  final String aRoutineText;
 
   const PdfStrokePage({
     super.key,
     required this.allStrokes,
     required this.routineElement,
+    required this.aTitle, 
+    required this.aTableHeader,
+    required this.aSubHeader,
+    required this.aRoutineText,
+    
   });
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context);
+    //final localizations = AppLocalizations.of(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(localizations!.pdfTitle),
+          title: Text(aTitle),
           actions: [
             IconButton(
-              icon: const Icon(
-                Icons.home_rounded,
-                color: Colors.blue,
-                size: 30.0
-              ),
+              icon: const Icon(Icons.home_rounded,
+                  color: Colors.blue, size: 30.0),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -52,7 +57,7 @@ class PdfStrokePage extends StatelessWidget {
 
   Future<Uint8List> _generatePdf(
       List<String> allStrokes, String routineElement, context) async {
-    final localizations = AppLocalizations.of(context);
+    //final localizations = AppLocalizations.of(context);
 
     int teeIndex = 0;
     int strokeIndex = 0;
@@ -65,7 +70,7 @@ class PdfStrokePage extends StatelessWidget {
       growable: false,
     );
 
-    strokeTable[0][0] = localizations!.pdfTableHeader;
+    strokeTable[0][0] = aTableHeader;
 
     for (int i = 1; i <= numberOfStrokesPerTee; i++) {
       strokeTable[0][i] = i.toString();
@@ -96,16 +101,13 @@ class PdfStrokePage extends StatelessWidget {
             children: [
               pw.Container(
                 alignment: pw.Alignment.centerLeft,
-                child: pw.Text(
-                    localizations.pdfSubHeader + formattedDate,
+                child: pw.Text(aSubHeader + formattedDate,
                     style: headerStyle),
               ),
               pw.Container(
                 alignment: pw.Alignment.centerLeft,
-                child: pw.Text(
-                    localizations.pdfRoutine + routineElement,
+                child: pw.Text(aRoutineText + routineElement,
                     style: headerStyle),
-                // child: pw.Text('Beurteilter Teil der Pre shot-Routine: $routineElement', style: headerStyle),
               ),
               pw.SizedBox(height: 40),
               pw.TableHelper.fromTextArray(
@@ -118,7 +120,6 @@ class PdfStrokePage extends StatelessWidget {
         },
       ),
     );
-
     return pdf.save();
   }
 }

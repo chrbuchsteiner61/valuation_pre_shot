@@ -32,6 +32,11 @@ class SaveYourRound extends StatelessWidget {
       width: 10,
     );
 
+    String aPdfTitle = localizations.pdfTitle;
+    String aPdfTableHeader = localizations.pdfTableHeader;
+    String aPdfSubHeader = localizations.pdfSubHeader;
+    String aPdfRoutineText = localizations.pdfRoutine;
+
     return Row(children: <Widget>[
       aSpaceBetween,
       Container(
@@ -52,6 +57,10 @@ class SaveYourRound extends StatelessWidget {
                       builder: (context) => PdfStrokePage(
                             allStrokes: aControllerFunction(),
                             routineElement: aRoutine,
+                            aTitle: aPdfTitle,
+                            aTableHeader: aPdfTableHeader,
+                            aSubHeader: aPdfSubHeader,
+                            aRoutineText: aPdfRoutineText,
                           )),
                 ); // generate a pdf
               },
