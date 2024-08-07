@@ -30,8 +30,8 @@ dependencies:
   cupertino_icons: any
   logger: any
   provider: any
-  pdf: any
-  printing: any
+  pdf: ^3.10.7
+  printing: ^5.11.1
   flutter_localizations:
     sdk: flutter
   intl: any 

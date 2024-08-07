@@ -17,10 +17,6 @@ var logger = Logger();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // SharedPreferences prefs = await SharedPreferences.getInstance();
-
-  //Locale savedLocale = Locale(prefs.getString('savedLocale') ?? 'es');
-  //logger.d(savedLocale);
   runApp(
     MultiProvider(
       providers: [
@@ -48,7 +44,6 @@ class TeeProvider with ChangeNotifier {
 }
 
 class GolfRatingApp extends StatefulWidget {
-  //final Locale savedLocale;
 
   const GolfRatingApp({super.key});
 
@@ -63,14 +58,12 @@ class GolfRatingApp extends StatefulWidget {
 }
 
 class GolfRatingAppState extends State<GolfRatingApp> {
-  // SharedPreferences prefs = await SharedPreferences.getInstance();
   LanguageService languageService = LanguageService();
   Locale _locale = const Locale('es');
 
   Future<void> initialLocale() async {
     String? aLanguageKey = await languageService.loadLanguage();
     setState(() {
-      //logger.d('initial: $aLanguageKey');
       _locale = Locale(aLanguageKey ?? 'de');
     });
   }
@@ -78,12 +71,9 @@ class GolfRatingAppState extends State<GolfRatingApp> {
   void setLocale(String locale) {
     setState(() {
       _locale = Locale(locale);
-
-      // logger.d(_locale);
     });
   }
 
-  // Locale get currentLocale => Locale(prefs.getString('savedLocale') ?? 'en');
   Locale get currentLocale => _locale;
 
   @override
@@ -187,7 +177,7 @@ class _StartingPageState extends State<StartingPage> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(localizedTitle),
+          title: Text(localizedTitle)
         ),
         drawer: const TheInfoDrawer(),
         body: Column(
