@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:valuation_pre_shot/ui_elements/styled_text.dart';
 import 'package:valuation_pre_shot/methods/pdf_stroke_page.dart';
 
-var logger = Logger();
-
 class SaveYourRound extends StatelessWidget {
   final dynamic aFunction;
   final dynamic aControllerFunction;
+  final String closeRoundText;
+  final String aPdfTitle;
+  final String aPdfTableHeader;
+  final String aPdfSubHeader;
+  final String aPdfRoutineText;
 
   const SaveYourRound({
     super.key,
     required this.aFunction,
     required this.aControllerFunction,
+    required this.closeRoundText,
+    required this.aPdfTitle,
+    required this.aPdfTableHeader,
+    required this.aPdfSubHeader,
+    required this.aPdfRoutineText,
   });
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context);
+    //final localizations = AppLocalizations.of(context);
     StyledText saveRoundText = StyledText(
-      aText: localizations!.closeTheRound,
+      // aText: localizations!.closeTheRound,
+      aText: closeRoundText,
       aWidth: 190,
       aAlignment: TextAlign.left,
     );
@@ -31,11 +37,6 @@ class SaveYourRound extends StatelessWidget {
       color: Colors.white,
       width: 10,
     );
-
-    String aPdfTitle = localizations.pdfTitle;
-    String aPdfTableHeader = localizations.pdfTableHeader;
-    String aPdfSubHeader = localizations.pdfSubHeader;
-    String aPdfRoutineText = localizations.pdfRoutine;
 
     return Row(children: <Widget>[
       aSpaceBetween,

@@ -194,6 +194,12 @@ class _StartingPageState extends State<StartingPage> {
             SaveYourRound(
               aFunction: _getTextOutOfARoutineInputController,
               aControllerFunction: _getAllValuationsFromController,
+              closeRoundText: localizations.closeTheRound,
+              aPdfTitle: localizations.pdfTitle,
+              aPdfTableHeader: localizations.pdfTableHeader,
+              aPdfSubHeader: localizations.pdfSubHeader,
+              aPdfRoutineText: localizations.pdfRoutine,
+
             )
           ],
         ),
