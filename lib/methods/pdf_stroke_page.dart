@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
-import 'dart:typed_data';
 import 'package:printing/printing.dart';
 
 import 'package:valuation_pre_shot/constants.dart';
-import 'package:valuation_pre_shot/styles/theme_data.dart';
 
 class PdfStrokePage extends StatelessWidget {
   final List<String> allStrokes;
@@ -26,6 +25,71 @@ class PdfStrokePage extends StatelessWidget {
     required this.aSubHeader,
     required this.aRoutineText,
   });
+
+  @override
+  Widget build(BuildContext context) {
+    final strokeTable = createStrokeTable(allStrokes, numberOfTees,
+        numberOfStrokesPerTee, initialValue, aTableHeader);
+    final String formattedDate = DateFormat('d.MM.yyyy').format(DateTime.now());
+    Future<Uint8List> aPdfTable = _generatePdf(PdfPageFormat.a4, routineElement,
+        aSubHeader, aRoutineText, formattedDate, strokeTable);
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // theme: AppTheme.data,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(aTitle),
+        ),
+        body: PdfPreview(
+          build: (format) => aPdfTable,
+        ),
+      ),
+    );
+  }
+
+  Future<Uint8List> _generatePdf(
+      PdfPageFormat format,
+      String routineElement,
+      String aSubHeader,
+      String aRountineText,
+      String formattedDate,
+      List<List<String>> strokeTable) async {
+    // Text styles
+    var font = await rootBundle.load("assets/fonts/NotoSans-Medium.ttf");
+    var ttf = pw.Font.ttf(font);
+    pw.TextStyle headerStyle = pw.TextStyle(fontSize: 16, font: ttf);
+    pw.TextStyle cellStyle = pw.TextStyle(fontSize: 14, font: ttf);
+
+    final pdf = pw.Document();
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (context) {
+          return pw.Column(
+            children: [
+              pw.Container(
+                alignment: pw.Alignment.centerLeft,
+                child: pw.Text(aSubHeader + formattedDate, style: headerStyle),
+              ),
+              pw.Container(
+                alignment: pw.Alignment.centerLeft,
+                child:
+                    pw.Text(aRoutineText + routineElement, style: headerStyle),
+              ),
+              pw.SizedBox(height: 40),
+              pw.TableHelper.fromTextArray(
+                data: strokeTable,
+                cellAlignment: pw.Alignment.topRight,
+                cellStyle: cellStyle,
+              ),
+            ],
+          );
+        },
+      ),
+    );
+    return pdf.save();
+  }
 
   List<List<String>> createStrokeTable(
       List<String> allStrokes,
@@ -60,67 +124,5 @@ class PdfStrokePage extends StatelessWidget {
     }
 
     return strokeTable;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final strokeTable = createStrokeTable(allStrokes, numberOfTees,
-        numberOfStrokesPerTee, initialValue, aTableHeader);
-    final String formattedDate = DateFormat('d.MM.yyyy').format(DateTime.now());
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.data,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(aTitle),
-        ),
-        body: PdfPreview(
-          build: (format) => _generatePdf(format, routineElement, aSubHeader,
-              aRoutineText, formattedDate, strokeTable),
-        ),
-      ),
-    );
-  }
-
-  Future<Uint8List> _generatePdf(
-      PdfPageFormat format,
-      String routineElement,
-      String aSubHeader,
-      String aRountineText,
-      String formattedDate,
-      List<List<String>> strokeTable) async {
-    // Text styles
-    const pw.TextStyle headerStyle = pw.TextStyle(fontSize: 16);
-    const pw.TextStyle cellStyle = pw.TextStyle(fontSize: 14);
-
-    final pdf = pw.Document();
-    pdf.addPage(
-      pw.Page(
-        pageFormat: PdfPageFormat.a4,
-        build: (context) {
-          return pw.Column(
-            children: [
-              pw.Container(
-                alignment: pw.Alignment.centerLeft,
-                child: pw.Text(aSubHeader + formattedDate, style: headerStyle),
-              ),
-              pw.Container(
-                alignment: pw.Alignment.centerLeft,
-                child:
-                    pw.Text(aRoutineText + routineElement, style: headerStyle),
-              ),
-              pw.SizedBox(height: 40),
-              pw.TableHelper.fromTextArray(
-                data: strokeTable,
-                cellAlignment: pw.Alignment.topRight,
-                cellStyle: cellStyle,
-              ),
-            ],
-          );
-        },
-      ),
-    );
-    return pdf.save();
   }
 }
