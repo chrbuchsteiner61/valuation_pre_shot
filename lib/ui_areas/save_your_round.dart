@@ -62,6 +62,7 @@ class SaveYourRound extends StatelessWidget {
                             aTableHeader: aPdfTableHeader,
                             aSubHeader: aPdfSubHeader,
                             aRoutineText: aPdfRoutineText,
+                            //strokeTable: strokeTable,
                           )),
                 ); // generate a pdf
               },

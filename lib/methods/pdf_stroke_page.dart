@@ -10,6 +10,7 @@ import 'package:valuation_pre_shot/constants.dart';
 
 class PdfStrokePage extends StatelessWidget {
   final List<String> allStrokes;
+  // final List<List<String>> strokeTable;
   final String routineElement;
   final String aTitle;
   final String aTableHeader;
@@ -19,6 +20,7 @@ class PdfStrokePage extends StatelessWidget {
   const PdfStrokePage({
     super.key,
     required this.allStrokes,
+    // required this.strokeTable,
     required this.routineElement,
     required this.aTitle,
     required this.aTableHeader,
@@ -28,9 +30,9 @@ class PdfStrokePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String formattedDate = DateFormat('d.MM.yyyy').format(DateTime.now());
     final strokeTable = createStrokeTable(allStrokes, numberOfTees,
         numberOfStrokesPerTee, initialValue, aTableHeader);
-    final String formattedDate = DateFormat('d.MM.yyyy').format(DateTime.now());
     Future<Uint8List> aPdfTable = _generatePdf(PdfPageFormat.a4, routineElement,
         aSubHeader, aRoutineText, formattedDate, strokeTable);
 
@@ -82,6 +84,7 @@ class PdfStrokePage extends StatelessWidget {
                 data: strokeTable,
                 cellAlignment: pw.Alignment.topRight,
                 cellStyle: cellStyle,
+                headerStyle: headerStyle,
               ),
             ],
           );
