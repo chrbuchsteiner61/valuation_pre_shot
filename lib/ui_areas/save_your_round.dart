@@ -25,9 +25,7 @@ class SaveYourRound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final localizations = AppLocalizations.of(context);
     StyledText saveRoundText = StyledText(
-      // aText: localizations!.closeTheRound,
       aText: closeRoundText,
       aWidth: 190,
       aAlignment: TextAlign.left,
@@ -62,8 +60,9 @@ class SaveYourRound extends StatelessWidget {
                             aTableHeader: aPdfTableHeader,
                             aSubHeader: aPdfSubHeader,
                             aRoutineText: aPdfRoutineText,
-                            //strokeTable: strokeTable,
-                          )),
+                          ),
+                          maintainState: true,
+                          ),
                 ); // generate a pdf
               },
               tooltip: 'close a round and generate a pdf',
