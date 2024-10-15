@@ -11,6 +11,7 @@ class SaveYourRound extends StatelessWidget {
   final String aPdfTableHeader;
   final String aPdfSubHeader;
   final String aPdfRoutineText;
+  final String formattedDate;
 
   const SaveYourRound({
     super.key,
@@ -21,6 +22,7 @@ class SaveYourRound extends StatelessWidget {
     required this.aPdfTableHeader,
     required this.aPdfSubHeader,
     required this.aPdfRoutineText,
+    required this.formattedDate,
   });
 
   @override
@@ -60,6 +62,7 @@ class SaveYourRound extends StatelessWidget {
                             aTableHeader: aPdfTableHeader,
                             aSubHeader: aPdfSubHeader,
                             aRoutineText: aPdfRoutineText,
+                            formattedDate: formattedDate,
                           ),
                           maintainState: true,
                           ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
@@ -16,6 +15,7 @@ class PdfStrokePage extends StatelessWidget {
   final String aTableHeader;
   final String aSubHeader;
   final String aRoutineText;
+  final String formattedDate;
 
   const PdfStrokePage({
     super.key,
@@ -26,11 +26,12 @@ class PdfStrokePage extends StatelessWidget {
     required this.aTableHeader,
     required this.aSubHeader,
     required this.aRoutineText,
+    required this.formattedDate
   });
 
   @override
   Widget build(BuildContext context) {
-    final String formattedDate = DateFormat('d.MM.yyyy').format(DateTime.now());
+   // final String formattedDate = DateFormat('d.MM.yyyy').format(DateTime.now());
     final strokeTable = createStrokeTable(allStrokes, numberOfTees,
         numberOfStrokesPerTee, initialValue, aTableHeader);
     Future<Uint8List> aPdfTable = _generatePdf(PdfPageFormat.a4, routineElement,

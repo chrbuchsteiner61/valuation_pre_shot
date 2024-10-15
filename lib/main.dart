@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'package:valuation_pre_shot/language_persistent.dart';
@@ -200,6 +201,7 @@ class _StartingPageState extends State<StartingPage> {
               aPdfTableHeader: localizations.pdfTableHeader,
               aPdfSubHeader: localizations.pdfSubHeader,
               aPdfRoutineText: localizations.pdfRoutine,
+              formattedDate: DateFormat('d.MM.yyyy').format(DateTime.now()),
 
             )
           ],

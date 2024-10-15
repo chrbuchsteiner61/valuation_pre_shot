@@ -13,7 +13,7 @@
   "drawerHeader": "Informationen",
   "privStHeader": "Datenschutzerklärung",
   "privStLine1": "Diese App speichert auf Ihrem Gerät die von Ihnen gewählte Sprache.",
-  "privStLine2": "Alle von Ihnen eingegebenen Daten sind auf Ihrem Gerät gespeichert und werden mit Schliessen der App gelöscht.",
+  "privStLine2": "Alle von Ihnen eingegebenen Daten sind auf Ihrem Gerät gespeichert und werden durch das Schliessen der App gelöscht.",
   "privStLine3": "Ihre Daten werden nicht weiter verarbeitet und nicht Dritten zur Verfügung gestellt.",
   "kontakt": "Kontakt",
   "language": "Sprache"
