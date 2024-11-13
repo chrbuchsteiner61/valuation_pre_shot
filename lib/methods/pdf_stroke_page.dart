@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+// import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
@@ -32,8 +32,9 @@ class PdfStrokePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final strokeTable = createStrokeTable(allStrokes, numberOfTees,
         numberOfStrokesPerTee, initialValue, aTableHeader);
-    Future<Uint8List> aPdfTable = generatePdf(PdfPageFormat.a4, routineElement,
-        aSubHeader, aRoutineText, formattedDate, strokeTable);
+
+    //final Future<Uint8List> aPdfTable = generatePdf(PdfPageFormat.a4, routineElement,
+    //    aSubHeader, aRoutineText, formattedDate, strokeTable);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -42,7 +43,8 @@ class PdfStrokePage extends StatelessWidget {
           title: Text(aTitle),
         ),
         body: PdfPreview(
-          build: (format) => aPdfTable,
+         // build: (format) => aPdfTable,
+         build: (format) => generatePdf(PdfPageFormat.a4, routineElement, aSubHeader, aRoutineText, formattedDate, strokeTable),
         ),
       ),
     );

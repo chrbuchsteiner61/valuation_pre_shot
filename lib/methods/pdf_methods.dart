@@ -1,4 +1,5 @@
-import 'package:flutter/services.dart';
+import 'dart:typed_data';
+//import 'package:flutter/services.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
@@ -11,16 +12,16 @@ Future<Uint8List> generatePdf(
     String formattedDate,
     List<List<String>> strokeTable) async {
   // Text styles
-  //var font = await rootBundle.load("assets/fonts/NotoSans-Medium.ttf");
+
   final ttf = await fontFromAssetBundle('assets/fonts/NotoSans-Medium.ttf');
-  //var ttf = pw.Font.ttf(font);
+
   pw.TextStyle headerStyle = pw.TextStyle(fontSize: 16, font: ttf);
   pw.TextStyle cellStyle = pw.TextStyle(fontSize: 14, font: ttf);
 
-  final pdf = pw.Document();
+  final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
   pdf.addPage(
     pw.Page(
-      pageFormat: PdfPageFormat.a4,
+      pageFormat: format,
       build: (context) {
         return pw.Column(
           children: [
