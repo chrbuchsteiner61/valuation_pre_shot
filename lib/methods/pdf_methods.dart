@@ -3,6 +3,9 @@ import 'dart:typed_data';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 Future<Uint8List> generatePdf(
     PdfPageFormat format,
@@ -45,6 +48,7 @@ Future<Uint8List> generatePdf(
       },
     ),
   );
+  logger.d(pdf.toString());
   return pdf.save();
 }
 
