@@ -4,20 +4,24 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:logger/logger.dart';
+import 'package:valuation_pre_shot/constants.dart';
 
 var logger = Logger();
 
 Future<Uint8List> generatePdf(
-    PdfPageFormat format,
-    String routineElement,
-    String aSubHeader,
-    String rountineText,
-    String formattedDate,
-    List<List<String>> strokeTable) async {
+  PdfPageFormat format,
+  String routineElement,
+  String aSubHeader,
+  String rountineText,
+  String formattedDate,
+  String aTitle,
+  String aTableHeader,
+  List<String> allStrokes,
+) async {
+  List<List<String>> strokeTable = createStrokeTable(allStrokes, numberOfTees,
+      numberOfStrokesPerTee, initialValue, aTableHeader);
   // Text styles
-
   final ttf = await fontFromAssetBundle('assets/fonts/NotoSans-Medium.ttf');
-
   pw.TextStyle headerStyle = pw.TextStyle(fontSize: 16, font: ttf);
   pw.TextStyle cellStyle = pw.TextStyle(fontSize: 14, font: ttf);
 
@@ -42,13 +46,22 @@ Future<Uint8List> generatePdf(
               cellAlignment: pw.Alignment.topRight,
               cellStyle: cellStyle,
               headerStyle: headerStyle,
+              headerDecoration: const pw.BoxDecoration(
+                color: PdfColors.grey200,
+              ),
+              cellHeight: 30,
+              border: pw.TableBorder.all(
+                color: PdfColors.black,
+                width: 1,
+              ),
             ),
           ],
         );
       },
     ),
   );
-  logger.d(pdf.toString());
+ 
+  logger.d('generatePdf called');
   return pdf.save();
 }
 
@@ -79,6 +92,8 @@ List<List<String>> createStrokeTable(List<String> allStrokes, int numberOfTees,
     strokeIndex = i % numberOfStrokesPerTee;
     strokeTable[teeIndex + 1][strokeIndex + 1] = allStrokes[i];
   }
+
+  logger.d('createStrokeTable called');
 
   return strokeTable;
 }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
-import 'package:valuation_pre_shot/constants.dart';
 import 'package:valuation_pre_shot/methods/pdf_methods.dart';
 
 class PdfStrokePage extends StatelessWidget {
@@ -30,11 +29,8 @@ class PdfStrokePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strokeTable = createStrokeTable(allStrokes, numberOfTees,
-        numberOfStrokesPerTee, initialValue, aTableHeader);
-
-    //final Future<Uint8List> aPdfTable = generatePdf(PdfPageFormat.a4, routineElement,
-    //    aSubHeader, aRoutineText, formattedDate, strokeTable);
+    // final strokeTable = createStrokeTable(allStrokes, numberOfTees,
+    //    numberOfStrokesPerTee, initialValue, aTableHeader);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -43,8 +39,7 @@ class PdfStrokePage extends StatelessWidget {
           title: Text(aTitle),
         ),
         body: PdfPreview(
-         // build: (format) => aPdfTable,
-         build: (format) => generatePdf(PdfPageFormat.a4, routineElement, aSubHeader, aRoutineText, formattedDate, strokeTable),
+         build: (format) => generatePdf(PdfPageFormat.a4, routineElement, aSubHeader, aRoutineText, formattedDate, aTitle, aTableHeader, allStrokes),
         ),
       ),
     );
