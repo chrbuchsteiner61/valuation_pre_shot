@@ -25,7 +25,7 @@ Future<Uint8List> generatePdf(
   pw.TextStyle headerStyle = pw.TextStyle(fontSize: 16, font: ttf);
   pw.TextStyle cellStyle = pw.TextStyle(fontSize: 14, font: ttf);
 
-  final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
+  final pdf = pw.Document();
   pdf.addPage(
     pw.Page(
       pageFormat: format,
@@ -52,7 +52,7 @@ Future<Uint8List> generatePdf(
               cellHeight: 30,
               border: pw.TableBorder.all(
                 color: PdfColors.black,
-                width: 1,
+                width: 1.0,
               ),
             ),
           ],
