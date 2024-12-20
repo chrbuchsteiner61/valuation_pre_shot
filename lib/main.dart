@@ -70,6 +70,12 @@ class GolfRatingAppState extends State<GolfRatingApp> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    initialLocale(); // Move this call from build to initState
+  }
+
   void setLocale(String locale) {
     setState(() {
       _locale = Locale(locale);
@@ -80,7 +86,7 @@ class GolfRatingAppState extends State<GolfRatingApp> {
 
   @override
   Widget build(BuildContext context) {
-    initialLocale();
+   // initialLocale();
     return MaterialApp(
       localizationsDelegates: const [
         AppLocalizations.delegate, // Add this line
@@ -136,10 +142,21 @@ class _StartingPageState extends State<StartingPage> {
     }
   }
 
+  // @override
+  //void dispose() {
+  //  aRoutineInputController.dispose();
+ //  for (TextEditingController aController in strokesController) {
+ //     aController.dispose();
+  //  }
+//    super.dispose();
+  // }
+
   @override
   void dispose() {
+    aRoutineInputController.removeListener(_getTextOutOfARoutineInputController);
     aRoutineInputController.dispose();
     for (TextEditingController aController in strokesController) {
+      aController.removeListener(_getTextOutOfAStrokeController);
       aController.dispose();
     }
     super.dispose();
