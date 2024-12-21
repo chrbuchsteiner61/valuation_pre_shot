@@ -142,15 +142,6 @@ class _StartingPageState extends State<StartingPage> {
     }
   }
 
-  // @override
-  //void dispose() {
-  //  aRoutineInputController.dispose();
- //  for (TextEditingController aController in strokesController) {
- //     aController.dispose();
-  //  }
-//    super.dispose();
-  // }
-
   @override
   void dispose() {
     aRoutineInputController.removeListener(_getTextOutOfARoutineInputController);
@@ -186,7 +177,7 @@ class _StartingPageState extends State<StartingPage> {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
     final String localizedTitle = localizations!.appTitle;
-    //logger.d(localizedTitle);
+
     Text bottomText = Text(
       version,
       style: Theme.of(context).textTheme.bodyLarge,

@@ -5,8 +5,6 @@ class ColoredContainer extends StatelessWidget {
 
   const ColoredContainer({super.key, required this.aWidget});
 
-  //Color backgroundColor = Colors.green;
-
   @override
   Widget build(BuildContext context) {
     return Padding(

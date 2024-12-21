@@ -21,7 +21,6 @@ class InDecreaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // int newTee = 0;
     Icon anIcon = const Icon(Icons.arrow_forward);
     int addValue = 0;
 
