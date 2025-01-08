@@ -1,10 +1,10 @@
-// import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 import 'package:valuation_pre_shot/methods/pdf_methods.dart';
+
+// import '../ui_elements/the_info_drawer.dart';
 
 class PdfStrokePage extends StatelessWidget {
   final List<String> allStrokes;
@@ -29,17 +29,26 @@ class PdfStrokePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final strokeTable = createStrokeTable(allStrokes, numberOfTees,
-    //    numberOfStrokesPerTee, initialValue, aTableHeader);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          leading: BackButton(
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           title: Text(aTitle),
+          backgroundColor: Colors.green[300],
         ),
         body: PdfPreview(
-         build: (format) => generatePdf(PdfPageFormat.a4, routineElement, aSubHeader, aRoutineText, formattedDate, aTitle, aTableHeader, allStrokes),
+          build: (format) => generatePdf(
+              PdfPageFormat.a4,
+              routineElement,
+              aSubHeader,
+              aRoutineText,
+              formattedDate,
+              aTitle,
+              aTableHeader,
+              allStrokes),
         ),
       ),
     );

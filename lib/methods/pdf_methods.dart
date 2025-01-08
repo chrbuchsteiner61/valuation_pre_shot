@@ -3,10 +3,10 @@ import 'dart:typed_data';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
-import 'package:logger/logger.dart';
+//import 'package:logger/logger.dart';
 import 'package:valuation_pre_shot/constants.dart';
 
-var logger = Logger();
+// var logger = Logger();
 
 Future<Uint8List> generatePdf(
   PdfPageFormat format,
@@ -61,7 +61,7 @@ Future<Uint8List> generatePdf(
     ),
   );
  
-  logger.d('generatePdf called');
+ // logger.d('generatePdf called');
   return pdf.save();
 }
 
@@ -93,7 +93,7 @@ List<List<String>> createStrokeTable(List<String> allStrokes, int numberOfTees,
     strokeTable[teeIndex + 1][strokeIndex + 1] = allStrokes[i];
   }
 
-  logger.d('createStrokeTable called');
+ // logger.d('createStrokeTable called');
 
   return strokeTable;
 }

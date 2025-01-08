@@ -186,7 +186,7 @@ class _StartingPageState extends State<StartingPage> {
     return Consumer<TeeProvider>(builder: (context, teeProvider, child) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Colors.green[300],
           title: Text(localizedTitle)
         ),
         drawer: const TheInfoDrawer(),
