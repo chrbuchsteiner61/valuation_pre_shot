@@ -159,35 +159,38 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
                 ),
                 DropdownMenuItem(
                   value: Language.italian.languageKey,
-                  child: Row(children: <Widget>[
-                    LanguageFlag(
-                    countryCode: Language.italian.flagKey,
-                  ),
-                    spaceBetween,
-                    Text(Language.italian.nameKey),
-                ],
+                  child: Row(
+                    children: <Widget>[
+                      LanguageFlag(
+                        countryCode: Language.italian.flagKey,
+                      ),
+                      spaceBetween,
+                      Text(Language.italian.nameKey),
+                    ],
                   ),
                 ),
                 DropdownMenuItem(
                   value: Language.danish.languageKey,
-                  child: Row(children: <Widget>[
-                    LanguageFlag(
-                    countryCode: Language.danish.flagKey,
-                  ),
-                    spaceBetween,
-                    Text(Language.danish.nameKey),
-                ],
+                  child: Row(
+                    children: <Widget>[
+                      LanguageFlag(
+                        countryCode: Language.danish.flagKey,
+                      ),
+                      spaceBetween,
+                      Text(Language.danish.nameKey),
+                    ],
                   ),
                 ),
                 DropdownMenuItem(
                   value: Language.swedish.languageKey,
-                  child: Row(children: <Widget>[
-                    LanguageFlag(
-                    countryCode: Language.swedish.flagKey,
-                  ),
-                    spaceBetween,
-                    Text(Language.swedish.nameKey),
-                ],
+                  child: Row(
+                    children: <Widget>[
+                      LanguageFlag(
+                        countryCode: Language.swedish.flagKey,
+                      ),
+                      spaceBetween,
+                      Text(Language.swedish.nameKey),
+                    ],
                   ),
                 ),
               ],
@@ -212,6 +215,10 @@ class TheInfoDrawerState extends State<TheInfoDrawer> {
               aStLine2: 'christian@buchsteinerconsulting.de',
               aStLine3: 'Wacholderweg 15a, D-61440 Oberursel',
             ),
+          ),
+          Text(
+            version,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),

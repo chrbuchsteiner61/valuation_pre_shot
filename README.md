@@ -1,21 +1,18 @@
 # valuation_pre_shot
 
-An app for golfers: evaluate your pre-shot routine
+## An app for golfers: evaluate your pre-shot routine
 
-Enter a rating for each shot and get an overview at the end of your round
-all strokes according to the lanes.
-
-This app only runs on mobile devices.
+# Enter a rating for each shot and get an overview at the end of your round
 
 After every shot you should always have your post shot routine.
 Instead of judging the result of your shot, you should evaluate
 how good your pre-shot routine was. It's best to only use one element of your pre-shot routine
 and evaluate it after each shot. You write down this evaluation based on school grades
 on your own scorecard. These mental or internal scorecards are very common.
-I learned about the idea of the post shot routine and this scorecard from pro Fabian Bünker.
-Since you have to fill out an official scorecard made of paper or cardboard in the tournament,
-You may find it cumbersome to fill out another piece of paper.
-This app replaces the Post Shot Routine paper scorecard.
+I got to know the idea of the post shot routine and this scorecard through my then PRO Fabian Bünker.
+Since you have to fill out an official paper scorecard in the tournament,
+you find it cumbersome to fill out another piece of paper.
+This app replaces the paper routine scorecard.
 
 You start the app and see on the interface:
 Enter the input field for the element of the Pre Shot Routine that you want to evaluate on this round.
@@ -25,13 +22,12 @@ You can rate 10 shots per lane with school grades from 1 to 6.
 If you press the save symbol, all hits will be displayed in a PDF.
 The file can be saved locally. There is no storage in the app.
 
-The app has no connection to an API or a server/cloud.
+The app has no connection to any API or server/cloud.
 
 
-Eine App für Golfspieler: bewerte Deine Pre Shot Routine
+## Eine App für Golfspieler: bewerte Deine Pre Shot Routine
 
-Trage für jeden Schlag eine Bewertung ein und erhalte am Ende Deiner Runde einen Überblick über
-alle Schläge nach den Bahnen.
+# Trage für jeden Schlag eine Bewertung ein und erhalte am Ende Deiner Runde einen Überblick über alle Schläge nach den Bahnen.
 
 Diese App läuft nur auf Mobilgeräten.
 
@@ -40,10 +36,10 @@ Statt das Ergebnis Deines Schlages zu beurteilen, solltest Du bewerten,
 wie gut Deine Pre Shot Routine war. Am Besten nimmst Du nur ein Element Deiner Pre Shot Routine
 und bewertest es nach jedem Schlag. Diese Bewertung nach Schulnoten notierst Du
 auf einer eigenen Scorecard. Diese mentalen oder inneren Scorecards sind sehr verbreitet.
-Ich habe die Idee der Post Shot Routine und dieser Scorecard durch den Pro Fabian Bünker kennengelernt.
-Da Du im Turnier schon eine offizielle Scorecard aus Papier oder Pappe ausfüllen musst,
-findest Du es vielleicht umständlich, noch einen weiteren Zettel auszufüllen.
-Diese App ersetzt die Papier-Scorecard der Post Shot Routine.
+Ich habe die Idee der Post Shot Routine und dieser Scorecard durch meinen damaligen PRO Fabian Bünker kennengelernt.
+Da Du im Turnier schon eine offizielle Scorecard aus Papier ausfüllen musst,
+findest Du es umständlich, noch einen weiteren Zettel auszufüllen.
+Diese App ersetzt die Papier-Routine-Scorecard.
 
 Du startest die App und siehst auf der Oberfläche:
 Das Eingabefeld für das Element des Pre Shot Routine ein, das Du auf dieser Runde bewerten willst.

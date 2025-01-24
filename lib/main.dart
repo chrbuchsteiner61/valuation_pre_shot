@@ -178,11 +178,6 @@ class _StartingPageState extends State<StartingPage> {
     final localizations = AppLocalizations.of(context);
     final String localizedTitle = localizations!.appTitle;
 
-    Text bottomText = Text(
-      version,
-      style: Theme.of(context).textTheme.bodyLarge,
-    );
-
     return Consumer<TeeProvider>(builder: (context, teeProvider, child) {
       return Scaffold(
         appBar: AppBar(
@@ -214,8 +209,7 @@ class _StartingPageState extends State<StartingPage> {
             )
           ],
         ),
-        bottomSheet:
-            bottomText, // This trailing comma makes auto-formatting nicer for build methods.
+         // This trailing comma makes auto-formatting nicer for build methods.
       );
     });
   }

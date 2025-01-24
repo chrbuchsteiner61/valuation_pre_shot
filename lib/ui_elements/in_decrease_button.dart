@@ -32,10 +32,6 @@ class InDecreaseButton extends StatelessWidget {
       case TheDirection.forward:
         anIcon = const Icon(Icons.arrow_forward);
         addValue = 1;
-
-      default:
-        'no action';
-        addValue = 0;
     }
 
     return Container(
