@@ -69,7 +69,7 @@ class SaveYourRound extends StatelessWidget {
                 ); // generate a pdf
               },
               tooltip: 'close a round and generate a pdf',
-              child: Icon(Icons.save,
+              child: Icon(Icons.picture_as_pdf,
                   color: Theme.of(context).colorScheme.primary),
             ),
           ],
